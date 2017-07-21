@@ -4,7 +4,9 @@
   "description": "Easy to use for effects when component scrolls into view, f.e. fade-in, autoplay video, etc.",
   "main": "./lib/index.js",
   "scripts": {
-    "transpile": "babel -d lib src/"
+    "transpile": "babel -d lib src/",
+    "build": "npm run build-docs",
+    "build-docs": "webpack -w examples/src examples/dist/app.js --module-bind js=babel-loader"
   },
   "keywords": [
     "react",
@@ -22,8 +24,11 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-loader": "^7.1.1",
     "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.3.0"
   },
   "babel": {
     "presets": [
