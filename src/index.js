@@ -4,7 +4,7 @@ import throttle from 'lodash.throttle'
 
 import getElementOffset from './getElementOffset'
 
-class ScrollMonitor extends Component {
+class InviewMonitor extends Component {
   constructor (props) {
     super()
     this.state = {
@@ -13,9 +13,9 @@ class ScrollMonitor extends Component {
     this._handleScroll = this._handleScroll.bind(this)
   }
   componentDidMount () {
-    const { useScrollMonitor, mountInitDelayTime, intoViewRatioShownThreshold } = this.props
-    if (!useScrollMonitor ||
-      typeof useScrollMonitor === 'function' && !useScrollMonitor()) {
+    const { useInviewMonitor, mountInitDelayTime, intoViewRatioShownThreshold } = this.props
+    if (!useInviewMonitor ||
+      typeof useInviewMonitor === 'function' && !useInviewMonitor()) {
       return
     }
     // we are about to look into the DOM for positions of elements,
@@ -82,29 +82,29 @@ class ScrollMonitor extends Component {
   }
 }
 
-ScrollMonitor.propTypes = {
+InviewMonitor.propTypes = {
   // Common usage: first set vis-hidden for classNameInitial,
   classNameInitial: PropTypes.string,
   // then use animate classes in onScrollIntoView, to trigger fade in etc animations
   classNameOnScrollIntoView: PropTypes.string,
 
-  // another use for the ScrollMonitor is to start passing a prop into an element
+  // another use for the InviewMonitor is to start passing a prop into an element
   // only when it has been scrolled into view; f.e. to autoplay a video.
   childPropsOnScrollIntoView: PropTypes.object,
 
   // whether to run any scroll monintoring at all;
   // because easier to toggle this prop, then toggle not using the component at all.
-  useScrollMonitor: PropTypes.func,
+  useInviewMonitor: PropTypes.func,
 
   mountInitDelayTime: PropTypes.number,
   intoViewRatioShownThreshold: PropTypes.number
 }
-ScrollMonitor.defaultProps = {
-  useScrollMonitor: () => true,
+InviewMonitor.defaultProps = {
+  useInviewMonitor: () => true,
   mountInitDelayTime: 0,
   // how much of the element should have be into view before it's considered
   // scrolled into view? default is 15%
   intoViewRatioShownThreshold: 0.15
 }
 
-export default ScrollMonitor
+export default InviewMonitor
