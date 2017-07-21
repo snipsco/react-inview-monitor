@@ -1,0 +1,34 @@
+{
+  "name": "react-inview-monitor",
+  "version": "1.0.0",
+  "description": "Easy to use for effects when component scrolls into view, f.e. fade-in, autoplay video, etc.",
+  "main": "./lib/index.js",
+  "scripts": {
+    "transpile": "babel -d lib src/"
+  },
+  "keywords": [
+    "react",
+    "scroll",
+    "inview",
+    "fadein",
+    "scrollmonitor"
+  ],
+  "author": "Jonas Ohlsson Aden",
+  "license": "MIT",
+  "dependencies": {
+    "lodash.throttle": "^4.1.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "latest"
+    ]
+  }
+}
