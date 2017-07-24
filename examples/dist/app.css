@@ -12,3 +12,24 @@ body {
 .fadeineffects__item:nth-of-type(2) {
   animation-delay: 150ms;
 }
+
+.icon-element {
+  fill: blue;
+  stroke: blue;
+  width: 75px;
+  height: 75px;
+}
+
+@media (min-width: 52em) {
+  .icon-element {
+    width: 90px;
+    height: 90px;
+  }
+}
+@media (min-width: 64em) {
+  .icon-element {
+    width: 140px;
+    height: 140px;
+  }
+}
+}

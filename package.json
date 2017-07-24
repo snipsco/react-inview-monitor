@@ -28,12 +28,14 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "react-dom": "^15.6.1",
+    "react-mt-svg-lines": "^0.7.3",
     "webpack": "^3.3.0"
   },
   "babel": {
     "presets": [
       "react",
-      "latest"
+      "latest",
+      "stage-0"
     ]
   }
 }

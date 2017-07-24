@@ -33,7 +33,7 @@ const FadeInItem = ({idx, fadeInClass = 'fadeInUp'}) => (
 )
 
 const FadeInEffects = () => (
-  <div style={{marginTop: '50vh'}}>
+  <div>
     <h2 className='mb4'>Scroll into view animations</h2>
 
     <div className='flex justify-between mb2'>
