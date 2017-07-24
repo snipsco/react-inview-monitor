@@ -10469,9 +10469,9 @@ var _LineSvgs = __webpack_require__(191);
 
 var _LineSvgs2 = _interopRequireDefault(_LineSvgs);
 
-var _Laundry = __webpack_require__(197);
+var _AutoplayExample = __webpack_require__(203);
 
-var _Laundry2 = _interopRequireDefault(_Laundry);
+var _AutoplayExample2 = _interopRequireDefault(_AutoplayExample);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10494,12 +10494,12 @@ _reactDom2.default.render(_react2.default.createElement(
 	),
 	_react2.default.createElement(
 		'section',
-		{ className: 'max-width-3 mx-auto mb4' },
+		{ className: 'max-width-3 mx-auto mb8' },
 		_react2.default.createElement(_FadeInEffects2.default, null)
 	),
 	_react2.default.createElement(
 		'section',
-		{ className: 'max-width-4 mx-auto mb4' },
+		{ className: 'max-width-3 mx-auto mb8' },
 		_react2.default.createElement(_LineSvgs2.default, null)
 	),
 	_react2.default.createElement(
@@ -10508,7 +10508,7 @@ _reactDom2.default.render(_react2.default.createElement(
 		'Made with \u2764\uFE0F by ',
 		_react2.default.createElement(
 			'a',
-			{ href: 'https://snips.ai' },
+			{ target: '_blank', href: 'https://snips.ai' },
 			'Snips'
 		)
 	)
@@ -22555,8 +22555,39 @@ var FadeInEffects = function FadeInEffects() {
     null,
     _react2.default.createElement(
       'h2',
-      { className: 'mb4' },
+      { className: 'mb2' },
       'Scroll into view animations'
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'left-align mb4' },
+      _react2.default.createElement(
+        'pre',
+        null,
+        _react2.default.createElement(
+          'code',
+          null,
+          '\n  // for each each box\n\n  <InViewMonitor\n    classNameInitial=\'vis-hidden\'\n    classNameOnScrollIntoView=\'animated fadeInUp\'\n  >\n    <ColoredBox />\n  </InViewMonitor>'
+        )
+      ),
+      _react2.default.createElement(
+        'code',
+        null,
+        'animated'
+      ),
+      ' and ',
+      _react2.default.createElement(
+        'code',
+        null,
+        'fadeInUp'
+      ),
+      ' comes from the great ',
+      _react2.default.createElement(
+        'a',
+        { target: 'blank', href: 'https://daneden.github.io/animate.css/' },
+        'animate.css library'
+      ),
+      '.'
     ),
     _react2.default.createElement(
       'div',
@@ -23235,17 +23266,48 @@ var LineSvgs = function LineSvgs() {
     'div',
     null,
     _react2.default.createElement(
-      'h2',
-      { className: 'mb4' },
-      'Line svg effects triggered by scrolling into view'
+      'div',
+      null,
+      _react2.default.createElement(
+        'h2',
+        { className: 'mb2' },
+        'SVG line animations triggered by scroll into view'
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'left-align mb4' },
+        _react2.default.createElement(
+          'pre',
+          { className: 'mb2' },
+          _react2.default.createElement(
+            'code',
+            null,
+            '\n// each svg icon below uses ScrollAnimateInLineSvg,\n// which accepts an Component that renders an svg using paths (not fills).\n\nconst ScrollAnimateInLineSvg = ({SvgElement}) => (\n  <InViewMonitor\n    classNameInitial=\'vis-hidden\'\n    classNameOnScrollIntoView=\'\'\n    childPropsOnScrollIntoView={{animate: true}}\n  >\n    <MtSvgLines\n      duration={1500}\n      fade\n    >\n      {SvgElement}\n    </MtSvgLines>\n  </InViewMonitor>\n)'
+          )
+        ),
+        'The magic \uD83C\uDFA9 for automatically adding line animations to SVGs handled by',
+        ' ',
+        _react2.default.createElement(
+          'a',
+          { target: 'blank', href: 'https://github.com/moarwick/react-mt-svg-lines/' },
+          'react-mt-svg-lines'
+        ),
+        '.'
+      )
     ),
     _react2.default.createElement(
       'div',
-      { className: 'flex justify-between' },
-      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Fridge2.default, null) }),
-      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Speaker2.default, null) }),
-      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Thermostat2.default, null) }),
-      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Lightbulb2.default, null) }),
+      { className: 'mb4' },
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Thermostat2.default, null) })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'mb4' },
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Lightbulb2.default, null) })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'mb4' },
       _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Laundry2.default, null) })
     )
   );
@@ -24811,6 +24873,95 @@ var Lightbulb = function Lightbulb() {
 };
 
 exports.default = Lightbulb;
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ScrollAnimateInLineSvg = __webpack_require__(192);
+
+var _ScrollAnimateInLineSvg2 = _interopRequireDefault(_ScrollAnimateInLineSvg);
+
+var _Fridge = __webpack_require__(196);
+
+var _Fridge2 = _interopRequireDefault(_Fridge);
+
+var _Laundry = __webpack_require__(197);
+
+var _Laundry2 = _interopRequireDefault(_Laundry);
+
+var _Speaker = __webpack_require__(198);
+
+var _Speaker2 = _interopRequireDefault(_Speaker);
+
+var _Thermostat = __webpack_require__(199);
+
+var _Thermostat2 = _interopRequireDefault(_Thermostat);
+
+var _Lightbulb = __webpack_require__(202);
+
+var _Lightbulb2 = _interopRequireDefault(_Lightbulb);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LineSvgs = function LineSvgs() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'div',
+      { className: 'max-width-3 mx-auto' },
+      _react2.default.createElement(
+        'h2',
+        { className: 'mb2' },
+        'SVG line animations triggered by scroll into view'
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'left-align mb4' },
+        _react2.default.createElement(
+          'pre',
+          { className: 'mb2' },
+          _react2.default.createElement(
+            'code',
+            null,
+            '\n// each svg icon below uses ScrollAnimateInLineSvg,\n// which accepts an Component that renders an svg using paths (not fills).\n\nconst ScrollAnimateInLineSvg = ({SvgElement}) => (\n  <InViewMonitor\n    classNameInitial=\'vis-hidden\'\n    classNameOnScrollIntoView=\'\'\n    childPropsOnScrollIntoView={{animate: true}}\n  >\n    <MtSvgLines\n      duration={1500}\n      fade\n    >\n      {SvgElement}\n    </MtSvgLines>\n  </InViewMonitor>\n)'
+          )
+        ),
+        'The magic \uD83C\uDFA9 for automatically adding line animations to SVGs handled by',
+        ' ',
+        _react2.default.createElement(
+          'a',
+          { target: 'blank', href: 'https://github.com/moarwick/react-mt-svg-lines/' },
+          'react-mt-svg-lines'
+        ),
+        '.'
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'flex justify-between max-width-4 mx-auto' },
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Fridge2.default, null) }),
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Speaker2.default, null) }),
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Thermostat2.default, null) }),
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Lightbulb2.default, null) }),
+      _react2.default.createElement(_ScrollAnimateInLineSvg2.default, { SvgElement: _react2.default.createElement(_Laundry2.default, null) })
+    )
+  );
+};
+
+exports.default = LineSvgs;
 
 /***/ })
 /******/ ]);

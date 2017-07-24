@@ -34,7 +34,23 @@ const FadeInItem = ({idx, fadeInClass = 'fadeInUp'}) => (
 
 const FadeInEffects = () => (
   <div>
-    <h2 className='mb4'>Scroll into view animations</h2>
+    <h2 className='mb2'>Scroll into view animations</h2>
+
+    <div className='left-align mb4'>
+      <pre><code>
+        {`
+  // for each each box
+
+  <InViewMonitor
+    classNameInitial='vis-hidden'
+    classNameOnScrollIntoView='animated fadeInUp'
+  >
+    <ColoredBox />
+  </InViewMonitor>`}
+      </code></pre>
+
+    <code>animated</code> and <code>fadeInUp</code> comes from the great <a target='blank' href='https://daneden.github.io/animate.css/'>animate.css library</a>.
+    </div>
 
     <div className='flex justify-between mb3'>
       <FadeInItem idx={0}/>
