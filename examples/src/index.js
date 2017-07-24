@@ -20,6 +20,10 @@ ReactDOM.render(
 			<LineSvgs />
 		</section>
 
+		<section className='pt4 pb1'>
+			Made with ❤️ by <a href='https://snips.ai'>Snips</a>
+		</section>
+
 	</div>,
 	document.getElementById('react_div')
 )

@@ -10501,6 +10501,16 @@ _reactDom2.default.render(_react2.default.createElement(
 		'section',
 		{ className: 'max-width-4 mx-auto mb4' },
 		_react2.default.createElement(_LineSvgs2.default, null)
+	),
+	_react2.default.createElement(
+		'section',
+		{ className: 'pt4 pb1' },
+		'Made with \u2764\uFE0F by ',
+		_react2.default.createElement(
+			'a',
+			{ href: 'https://snips.ai' },
+			'Snips'
+		)
 	)
 ), document.getElementById('react_div'));
 
@@ -22550,42 +22560,21 @@ var FadeInEffects = function FadeInEffects() {
     ),
     _react2.default.createElement(
       'div',
-      { className: 'flex justify-between mb2' },
+      { className: 'flex justify-between mb3' },
       _react2.default.createElement(FadeInItem, { idx: 0 }),
       _react2.default.createElement(FadeInItem, { idx: 1 }),
       _react2.default.createElement(FadeInItem, { idx: 2 })
     ),
     _react2.default.createElement(
       'div',
-      { className: 'flex justify-between mb2' },
+      { className: 'flex justify-between mb3' },
       _react2.default.createElement(FadeInItem, { idx: 3, fadeInClass: 'fadeInLeft' }),
       _react2.default.createElement(FadeInItem, { idx: 4, fadeInClass: 'fadeInLeft' }),
       _react2.default.createElement(FadeInItem, { idx: 5, fadeInClass: 'fadeInLeft' })
     ),
     _react2.default.createElement(
       'div',
-      { className: 'flex justify-between mb2' },
-      _react2.default.createElement(FadeInItem, { idx: 6, fadeInClass: 'fadeInRight' }),
-      _react2.default.createElement(FadeInItem, { idx: 7, fadeInClass: 'fadeInRight' }),
-      _react2.default.createElement(FadeInItem, { idx: 8, fadeInClass: 'fadeInRight' })
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'flex justify-between mb2' },
-      _react2.default.createElement(FadeInItem, { idx: 0 }),
-      _react2.default.createElement(FadeInItem, { idx: 1 }),
-      _react2.default.createElement(FadeInItem, { idx: 2 })
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'flex justify-between mb2' },
-      _react2.default.createElement(FadeInItem, { idx: 3, fadeInClass: 'fadeInLeft' }),
-      _react2.default.createElement(FadeInItem, { idx: 4, fadeInClass: 'fadeInLeft' }),
-      _react2.default.createElement(FadeInItem, { idx: 5, fadeInClass: 'fadeInLeft' })
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'flex justify-between mb2' },
+      { className: 'flex justify-between mb3' },
       _react2.default.createElement(FadeInItem, { idx: 6, fadeInClass: 'fadeInRight' }),
       _react2.default.createElement(FadeInItem, { idx: 7, fadeInClass: 'fadeInRight' }),
       _react2.default.createElement(FadeInItem, { idx: 8, fadeInClass: 'fadeInRight' })

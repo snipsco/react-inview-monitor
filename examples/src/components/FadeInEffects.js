@@ -36,37 +36,19 @@ const FadeInEffects = () => (
   <div>
     <h2 className='mb4'>Scroll into view animations</h2>
 
-    <div className='flex justify-between mb2'>
+    <div className='flex justify-between mb3'>
       <FadeInItem idx={0}/>
       <FadeInItem idx={1}/>
       <FadeInItem idx={2}/>
     </div>
 
-    <div className='flex justify-between mb2'>
+    <div className='flex justify-between mb3'>
       <FadeInItem idx={3} fadeInClass='fadeInLeft'/>
       <FadeInItem idx={4} fadeInClass='fadeInLeft'/>
       <FadeInItem idx={5} fadeInClass='fadeInLeft'/>
     </div>
 
-    <div className='flex justify-between mb2'>
-      <FadeInItem idx={6} fadeInClass='fadeInRight'/>
-      <FadeInItem idx={7} fadeInClass='fadeInRight'/>
-      <FadeInItem idx={8} fadeInClass='fadeInRight'/>
-    </div>
-
-    <div className='flex justify-between mb2'>
-      <FadeInItem idx={0}/>
-      <FadeInItem idx={1}/>
-      <FadeInItem idx={2}/>
-    </div>
-
-    <div className='flex justify-between mb2'>
-      <FadeInItem idx={3} fadeInClass='fadeInLeft'/>
-      <FadeInItem idx={4} fadeInClass='fadeInLeft'/>
-      <FadeInItem idx={5} fadeInClass='fadeInLeft'/>
-    </div>
-
-    <div className='flex justify-between mb2'>
+    <div className='flex justify-between mb3'>
       <FadeInItem idx={6} fadeInClass='fadeInRight'/>
       <FadeInItem idx={7} fadeInClass='fadeInRight'/>
       <FadeInItem idx={8} fadeInClass='fadeInRight'/>
