@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import FadeInEffects from './components/FadeInEffects'
 import LineSvgs from './components/LineSvgs'
+import AutoplayExample from './components/AutoplayExample'
 
 ReactDOM.render(
 	<div className='col-10 md-col-12 center mx-auto'>
@@ -17,6 +18,10 @@ ReactDOM.render(
 
 		<section className='max-width-3 mx-auto mb8'>
 			<LineSvgs />
+		</section>
+
+		<section className='max-width-3 mx-auto mb8'>
+			<AutoplayExample />
 		</section>
 
 		<section className='pt4 pb1'>
