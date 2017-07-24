@@ -24,9 +24,9 @@ ReactDOM.render(
 			<AutoplayExample />
 		</section>
 
-		<section className='pt4 pb1'>
+		<footer className='pt4 pb1'>
 			Made with ❤️ by <a target='_blank' href='https://snips.ai'>Snips</a>
-		</section>
+		</footer>
 
 	</div>,
 	document.getElementById('react_div')

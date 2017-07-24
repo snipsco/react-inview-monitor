@@ -10508,7 +10508,7 @@ _reactDom2.default.render(_react2.default.createElement(
 		_react2.default.createElement(_AutoplayExample2.default, null)
 	),
 	_react2.default.createElement(
-		'section',
+		'footer',
 		{ className: 'pt4 pb1' },
 		'Made with \u2764\uFE0F by ',
 		_react2.default.createElement(
