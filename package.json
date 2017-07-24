@@ -2,6 +2,7 @@
   "name": "react-inview-monitor",
   "version": "1.0.0",
   "description": "Easy to use for effects when component scrolls into view, f.e. fade-in, autoplay video, etc.",
+  "homepage": "https://snipsco.github.io/react-inview-monitor/",
   "main": "./lib/index.js",
   "scripts": {
     "transpile": "babel -d lib src/",
@@ -16,6 +17,10 @@
     "scrollmonitor"
   ],
   "author": "Jonas Ohlsson Aden",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/snips/react-inview-monitor.git#master"
+  },
   "license": "MIT",
   "dependencies": {
     "lodash.throttle": "^4.1.1",
