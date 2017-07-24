@@ -8,6 +8,31 @@
 There are other ~ scoll monitor libraries for React available, but none of them solved our use case: to be able to declaratively configure animations and other effects to be
 triggered when individual elements came into the view. Inspired by the [wow reveal animation library](http://mynameismatthieu.com/WOW/) we set out to get to the same ease of use but within react's code paradigm.
 
+## Usage
+
+### Reveal animation when scrolled into view
+```js
+<InViewMonitor
+  classNameInitial='vis-hidden'
+  classNameOnScrollIntoView='animated fadeInUp'
+>
+  <ElementToAnimateIn />
+</InViewMonitor>
+```
+Note: these classes are not included. We are big fans of [animate.css](https://github.com/daneden/animate.css) for simple "just add water" animations.
+
+### Send custom prop to children when scrolled into view
+Can be used for example to auto play a video
+```js
+<InViewMonitor
+  childPropsOnScrollIntoView={{isPlaying: true}}
+>
+  <VideoPlayer />
+</InViewMonitor>
+```
+
+[See these and more working examples on demo page](https://snipsco.github.io/react-inview-monitor/).
+
 
 ## Component properties
 
