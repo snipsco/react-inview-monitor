@@ -1,3 +1,22 @@
 # react-inview-monitor
 
 [![NPM version](https://badge.fury.io/js/react-inview-monitor.svg)](https://www.npmjs.com/package/react-inview-monitor)
+
+## Easy to use, declarative scroll into view component for animations and more
+See the demos for some example usage:
+https://snipsco.github.io/react-inview-monitor/
+
+There are other ~ scoll monitor libraries for React available, but none of them solved our use case: to be able to declaratively configure animations and other effects to be
+triggered when individual elements came into the view. Inspired by the [wow reveal animation library](http://mynameismatthieu.com/WOW/) we set out to get to the same ease of use but within react's code paradigm.
+
+
+## Component properties
+
+| Property | Type | Description
+:---|:---|:---
+| `classNameInitial` | string | className for initial render, typically used to visuall hide if element will be animated in. |
+| `classNameOnScrollIntoView` | string | className to be added when scrolled into view, typically animation related classes. |
+| `childPropsOnScrollIntoView` | object | props that will be propagated to the child element. Can be used to start video, start complex animations, etc. |
+| `intoViewRatioShownThreshold` | number | Proportion of element that needs to be inside viewport before it's considered in view. `Default: 0.15`  |
+| `useScrollMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
+| `mountInitDelayTime` | number | Can be used if loading in large images etc that changes viewport coordinates on page |

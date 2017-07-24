@@ -13,6 +13,7 @@
     "react",
     "scroll",
     "inview",
+    "reveal",
     "fadein",
     "scrollmonitor"
   ],
