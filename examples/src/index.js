@@ -24,6 +24,18 @@ ReactDOM.render(
 			<AutoplayExample />
 		</section>
 
+		<section className='max-width-3 mx-auto mb8'>
+			<button
+				type='button'
+				onClick={() => {
+					window.scrollTo(0,0)
+					window.location.reload()
+				}}
+			>
+				<h2>Try again?</h2>
+			</button>
+		</section>
+
 		<footer className='pt4 pb1'>
 			Made with ❤️ by <a target='_blank' href='https://snips.ai'>Snips</a>
 		</footer>
