@@ -36,3 +36,7 @@ body {
 .mb8 {
   margin-bottom: 8rem;
 }
+
+.gray {
+  color: gray;
+}

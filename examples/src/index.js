@@ -36,8 +36,8 @@ ReactDOM.render(
 			</button>
 		</section>
 
-		<footer className='pt4 pb1'>
-			Made with ❤️ by <a target='_blank' href='https://snips.ai'>Snips</a>
+		<footer className='pt4 pb1 gray'>
+			Made with <span className='mr1'>❤️</span> by <a target='_blank' href='https://snips.ai'>Snips</a>. MIT Licensed.
 		</footer>
 
 	</div>,

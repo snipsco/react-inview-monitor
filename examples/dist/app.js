@@ -10528,13 +10528,20 @@ _reactDom2.default.render(_react2.default.createElement(
 	),
 	_react2.default.createElement(
 		'footer',
-		{ className: 'pt4 pb1' },
-		'Made with \u2764\uFE0F by ',
+		{ className: 'pt4 pb1 gray' },
+		'Made with ',
+		_react2.default.createElement(
+			'span',
+			{ className: 'mr1' },
+			'\u2764\uFE0F'
+		),
+		' by ',
 		_react2.default.createElement(
 			'a',
 			{ target: '_blank', href: 'https://snips.ai' },
 			'Snips'
-		)
+		),
+		'. MIT Licensed.'
 	)
 ), document.getElementById('react_div'));
 
