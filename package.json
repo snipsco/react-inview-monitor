@@ -1,6 +1,6 @@
 {
   "name": "react-inview-monitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy to use for effects when component scrolls into view, f.e. fade-in, autoplay video, etc.",
   "homepage": "https://snipsco.github.io/react-inview-monitor/",
   "main": "./lib/index.js",
