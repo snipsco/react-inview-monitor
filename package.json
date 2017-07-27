@@ -20,7 +20,7 @@
   "author": "Jonas Ohlsson Aden",
   "repository": {
     "type": "git",
-    "url": "git://github.com/snips/react-inview-monitor.git#master"
+    "url": "git://github.com/snipsco/react-inview-monitor.git#master"
   },
   "license": "MIT",
   "dependencies": {
