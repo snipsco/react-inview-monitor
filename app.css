@@ -40,3 +40,38 @@ body {
 .gray {
   color: gray;
 }
+
+
+.tabs {
+  text-align: left;
+  height: 36px; /* preserve space when body becomes fixed */
+}
+.tabs--fixed .tabs__body {
+  position: fixed;
+  z-index: 10;
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+  top: 0;
+  background-color: #eee;
+  animation: fade-in 0.15s cubic-bezier(0.25, 0.15, 0.3, 1.1) backwards;
+}
+.tabs__tab {
+  text-decoration: none;
+  font-size: 1.125rem;
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.125rem -2px 0.125rem;
+  color: #202020;
+}
+.tabs__tab:target {
+  font-weight: bold;
+  border-bottom: 5px solid blue;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
