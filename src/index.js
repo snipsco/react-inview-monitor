@@ -31,10 +31,13 @@ class InviewMonitor extends Component {
     // depends on the site, so let the user specify.
     setTimeout(() => {
       const elementOffsetTop = getElementOffset(this._element).top
+      const elementHeight = this._element.getBoundingClientRect().height
+
       // when element is just above the bottom of the screen
-      this._scrollIntoViewThreshold = elementOffsetTop - (window.innerHeight * (1 - intoViewRatioShownThreshold))
-      // when element is scrolled past, so again completely out of the screen
-      this._scrollOutOffViewThreshold = elementOffsetTop + this._element.getBoundingClientRect().height
+      this._scrollIntoViewThreshold = elementOffsetTop - window.innerHeight + (elementHeight * intoViewRatioShownThreshold)
+
+      // when bottom of element is just at the top of the screen (about to be scrolled past)
+      this._scrollOutOffViewThreshold = elementOffsetTop + elementHeight - (elementHeight * (1 - intoViewRatioShownThreshold))
 
       this._throttledScroll = throttle(this._handleScroll, 100)
       window.addEventListener('scroll', this._throttledScroll)
