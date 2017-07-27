@@ -48,7 +48,7 @@ Can be used for example to auto play a video
 | `classNameScrolledPastView` | string | className added/removed when scrolled out of view and back in again, typically used for fixing navigation etc on scroll. |
 | `childPropsOnScrollIntoView` | object | props propagated to the child element. Can be used to start video, start complex animations, etc. |
 | `intoViewRatioShownThreshold` | number | Proportion of element that needs to be inside viewport before it's considered in view. `Default: 0.15`  |
-| `useScrollMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
+| `useInviewMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
 | `mountInitDelayTime` | number | Can be used if loading in large images etc that changes viewport coordinates on page |
 
 
