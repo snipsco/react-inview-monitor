@@ -52,7 +52,9 @@ class InviewMonitor extends Component {
     const yOffset = window.pageYOffset
     const {
       classNameOnScrollIntoView,
-      childPropsOnScrollIntoView
+      childPropsOnScrollIntoView,
+      classNameScrolledPastView,
+      classNameInitial
     } = this.props
 
     if (yOffset > this._scrollIntoViewThreshold) {
@@ -62,6 +64,20 @@ class InviewMonitor extends Component {
           childProps: childPropsOnScrollIntoView
         })
         window.removeEventListener('scroll', this._throttledScroll)
+      }
+    }
+    if (classNameScrolledPastView) {
+      const currentlyScrolledPast = yOffset > this._scrollOutOffViewThreshold
+      if (currentlyScrolledPast && !this._scrolledPast) {
+        this.setState({
+          className: classNameScrolledPastView
+        })
+        this._scrolledPast = true
+      } else if (!currentlyScrolledPast && this._scrolledPast) {
+        this.setState({
+          className: classNameInitial
+        })
+        this._scrolledPast = false
       }
     }
   }
@@ -90,6 +106,8 @@ InviewMonitor.propTypes = {
   classNameInitial: PropTypes.string,
   // then use animate classes in onScrollIntoView, to trigger fade in etc animations
   classNameOnScrollIntoView: PropTypes.string,
+  // can be used for fixed navigation etc
+  classNameScrolledPastView: PropTypes.string,
 
   // another use for the InviewMonitor is to start passing a prop into an element
   // only when it has been scrolled into view; f.e. to autoplay a video.
