@@ -5,6 +5,7 @@
   "homepage": "https://snipsco.github.io/react-inview-monitor/",
   "main": "./lib/index.js",
   "scripts": {
+    "prepublish": "npm run transpile",
     "transpile": "babel -d lib src/",
     "build": "npm run build-docs",
     "build-docs": "webpack -w examples/src examples/dist/app.js --module-bind js=babel-loader"
