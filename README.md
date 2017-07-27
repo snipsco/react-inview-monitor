@@ -44,3 +44,12 @@ Can be used for example to auto play a video
 | `intoViewRatioShownThreshold` | number | Proportion of element that needs to be inside viewport before it's considered in view. `Default: 0.15`  |
 | `useScrollMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
 | `mountInitDelayTime` | number | Can be used if loading in large images etc that changes viewport coordinates on page |
+
+
+## Performance Note
+
+Each instance of InViewMonitor sets up a (throttled) scroll listener
+on the window. This means a large number of concurrent InViewMonitor instances
+will likely cause performance issues. If you are looking to do something likely
+fading in every item on scroll in a long list, you will be better of setting up
+your own single scroll listener and do the calculations for all items there.
