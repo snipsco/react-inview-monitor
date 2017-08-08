@@ -52,7 +52,7 @@ body {
   margin-bottom: 0;
   padding-bottom: 0.5rem;
   top: 0;
-  background-color: #eee;
+  background-color: blue;
   animation: fade-in 0.15s cubic-bezier(0.25, 0.15, 0.3, 1.1) backwards;
 }
 .tabs__tab {
@@ -62,6 +62,9 @@ body {
   padding: 0.5rem 0.75rem;
   margin: 0 0.125rem -2px 0.125rem;
   color: #202020;
+}
+.tabs--fixed .tabs__tab {
+  color: white;
 }
 .tabs__tab:target {
   font-weight: bold;
