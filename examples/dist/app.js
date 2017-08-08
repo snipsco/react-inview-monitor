@@ -10534,71 +10534,64 @@ var _AutoplayExample = __webpack_require__(202);
 
 var _AutoplayExample2 = _interopRequireDefault(_AutoplayExample);
 
-var _GithubCorner = __webpack_require__(205);
+var _MainHeader = __webpack_require__(205);
 
-var _GithubCorner2 = _interopRequireDefault(_GithubCorner);
+var _MainHeader2 = _interopRequireDefault(_MainHeader);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(
 	'div',
 	{ className: 'col-10 md-col-12 center mx-auto' },
+	_react2.default.createElement(_MainHeader2.default, null),
 	_react2.default.createElement(
-		'header',
-		{ style: { marginBottom: '60vh' } },
+		'main',
+		{ className: 'main py2' },
 		_react2.default.createElement(
-			'h1',
-			{ className: 'mb1' },
-			'react-inview-monitor'
+			'section',
+			{ id: 'fixed-nav', className: 'max-width-3 mx-auto mb8' },
+			_react2.default.createElement(_ScrolledPastFixedNav2.default, {
+				sections: [{ id: 'fade-in', label: 'fade in animations' }, { id: 'line-svg', label: 'Start svg line path animation' }, { id: 'autoplay', label: 'Autoplay video' }]
+			})
 		),
-		_react2.default.createElement(_GithubCorner2.default, {
-			href: 'https://github.com/snipsco/react-inview-monitor'
-		})
-	),
-	_react2.default.createElement(
-		'section',
-		{ id: 'fixed-nav', className: 'max-width-3 mx-auto mb8' },
-		_react2.default.createElement(_ScrolledPastFixedNav2.default, {
-			sections: [{ id: 'fade-in', label: 'fade in animations' }, { id: 'line-svg', label: 'Start svg line path animation' }, { id: 'autoplay', label: 'Autoplay video' }]
-		})
-	),
-	_react2.default.createElement(
-		'section',
-		{ id: 'fade-in', className: 'max-width-3 mx-auto mb8' },
-		_react2.default.createElement(_FadeInEffects2.default, null)
-	),
-	_react2.default.createElement(
-		'section',
-		{ id: 'line-svg', className: 'max-width-3 mx-auto mb8' },
-		_react2.default.createElement(_LineSvgs2.default, null)
-	),
-	_react2.default.createElement(
-		'section',
-		{ id: 'autoplay', className: 'max-width-3 mx-auto mb8' },
-		_react2.default.createElement(_AutoplayExample2.default, null)
-	),
-	_react2.default.createElement(
-		'section',
-		{ id: 'again', className: 'max-width-3 mx-auto mb8' },
 		_react2.default.createElement(
-			'button',
-			{
-				type: 'button',
-				onClick: function onClick() {
-					window.scrollTo(0, 0);
-					window.location.reload();
-				}
-			},
+			'section',
+			{ id: 'fade-in', className: 'max-width-3 mx-auto mb8' },
+			_react2.default.createElement(_FadeInEffects2.default, null)
+		),
+		_react2.default.createElement(
+			'section',
+			{ id: 'line-svg', className: 'max-width-3 mx-auto mb8' },
+			_react2.default.createElement(_LineSvgs2.default, null)
+		),
+		_react2.default.createElement(
+			'section',
+			{ id: 'autoplay', className: 'max-width-3 mx-auto mb8' },
+			_react2.default.createElement(_AutoplayExample2.default, null)
+		),
+		_react2.default.createElement(
+			'section',
+			{ id: 'again', className: 'max-width-3 mx-auto mb8' },
 			_react2.default.createElement(
-				'h2',
-				null,
-				'Try again?'
+				'button',
+				{
+					type: 'button',
+					onClick: function onClick() {
+						window.scrollTo(0, 0);
+						window.location.reload();
+					}
+				},
+				_react2.default.createElement(
+					'h2',
+					null,
+					'Try again?'
+				)
 			)
 		)
 	),
 	_react2.default.createElement(
 		'footer',
-		{ className: 'pt4 pb1 gray', style: { marginTop: '1000px' } },
+		{ className: 'py2 gray' },
 		'Made with ',
 		_react2.default.createElement(
 			'span',
@@ -25179,6 +25172,54 @@ Object.defineProperty(exports,"__esModule",{value:true});var base64video=exports
 
 /***/ }),
 /* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _GithubCorner = __webpack_require__(206);
+
+var _GithubCorner2 = _interopRequireDefault(_GithubCorner);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MainHeader = function MainHeader() {
+	return _react2.default.createElement(
+		'header',
+		{ className: 'main-header py4' },
+		_react2.default.createElement(_GithubCorner2.default, {
+			href: 'https://github.com/snipsco/react-inview-monitor'
+		}),
+		_react2.default.createElement(
+			'h1',
+			{ className: 'mb1' },
+			'react-inview-monitor'
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'h3 mb3' },
+			'Declarative in-view scroll monitor for React JS'
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'main-header__install-cta max-width-2 mx-auto border p1' },
+			'$ yarn install react-inview-monitor'
+		)
+	);
+};
+
+exports.default = MainHeader;
+
+/***/ }),
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

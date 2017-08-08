@@ -5,6 +5,13 @@ body {
   visibility: hidden;
 }
 
+.main {
+  background-color: #fafafa;
+}
+.main-header__install-cta {
+  border-color: blue;
+}
+
 .fadeineffects__item:nth-of-type(1) {
   animation-delay: 100ms;
 }
