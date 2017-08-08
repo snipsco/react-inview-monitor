@@ -6,11 +6,15 @@ import FadeInEffects from './components/FadeInEffects'
 import LineSvgs from './components/LineSvgs'
 import AutoplayExample from './components/AutoplayExample'
 
+import GithubCorner from './components/GithubCorner'
+
 ReactDOM.render(
 	<div className='col-10 md-col-12 center mx-auto'>
 		<header style={{marginBottom: '60vh'}}>
 			<h1 className='mb1'>react-inview-monitor</h1>
-			<a href='https://github.com/snipsco/react-inview-monitor'>Fork on github</a>
+			<GithubCorner
+				href='https://github.com/snipsco/react-inview-monitor'
+			/>
 		</header>
 
     <section id='fixed-nav' className='max-width-3 mx-auto mb8'>
