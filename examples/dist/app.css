@@ -53,12 +53,19 @@ body {
   text-align: left;
   height: 36px; /* preserve space when body becomes fixed */
 }
+.tabs__body {
+  border-bottom: 1px solid grey;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
 .tabs--fixed .tabs__body {
   position: fixed;
   z-index: 10;
   margin-bottom: 0;
-  padding-bottom: 0.5rem;
   top: 0;
+  left: 0;
+  right: 0;
+  border-bottom-color: transparent;
   background-color: blue;
   animation: fade-in 0.15s cubic-bezier(0.25, 0.15, 0.3, 1.1) backwards;
 }
@@ -87,5 +94,8 @@ body {
 }
 
 /* via: http://tholman.com/github-corners/ */
+.github-corner {z-index: 1000;}
 .github-corner__background {fill:#151513; color:#fff;}
-.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out;transform-origin: 130px 106px;}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out;transform-origin: 130px 106px;}
+@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
