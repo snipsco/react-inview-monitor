@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Highlight from 'react-highlight'
 import InViewMonitor from '../../../src/'
 import Video from './Video'
 
@@ -11,17 +12,18 @@ const AutoplayExample = () => (
     <h2 className='mb2'>Autoplay video when in view</h2>
 
     <div className='left-align mb4'>
-      <pre className='mb2'><code>
-        {`
-// given a Video component that can be started by changing isPlaying prop,
+      <Highlight className='javascript'>
+        {`// given a Video component that can be started by changing isPlaying prop,
 // an autoplaying video via scroll is trivial:
-<InViewMonitor
-  childPropsOnScrollIntoView={{isPlaying: true}}
->
-  <Video src={videoSrc} />
-</InViewMonitor>
-`}
-      </code></pre>
+
+return (
+  <InViewMonitor
+    childPropsOnScrollIntoView={{isPlaying: true}}
+  >
+    <Video src={videoSrc} />
+  </InViewMonitor>
+)`}
+      </Highlight>
     </div>
 
     <div>

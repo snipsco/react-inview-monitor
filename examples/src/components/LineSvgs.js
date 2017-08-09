@@ -1,4 +1,5 @@
 import React from 'react'
+import Highlight from 'react-highlight'
 
 import ScrollAnimateInLineSvg from './ScrollAnimateInLineSvg'
 import Fridge from './icon-elements/Fridge'
@@ -12,9 +13,8 @@ const LineSvgs = () => (
     <h2 className='mb2'>SVG line animations triggered by scroll into view</h2>
 
     <div className='left-align mb4'>
-      <pre className='mb2'><code>
-        {`
-// each svg icon below uses ScrollAnimateInLineSvg,
+      <Highlight className='javascript'>
+        {`// each svg icon below uses ScrollAnimateInLineSvg,
 // which accepts an Component that renders an svg using paths (not fills).
 
 const ScrollAnimateInLineSvg = ({SvgElement}) => (
@@ -31,7 +31,7 @@ const ScrollAnimateInLineSvg = ({SvgElement}) => (
   </MtSvgLines>
 </InViewMonitor>
 )`}
-      </code></pre>
+      </Highlight>
       The magic 🎩 for automatically adding line animations to SVGs handled by{' '}
       <a target='blank' href='https://github.com/moarwick/react-mt-svg-lines/'>react-mt-svg-lines</a>.
     </div>

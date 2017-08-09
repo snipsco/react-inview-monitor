@@ -1,4 +1,5 @@
 import React from 'react'
+import Highlight from 'react-highlight'
 
 import InViewMonitor from '../../../src/'
 
@@ -7,17 +8,17 @@ const ScrolledPastFixedNav = ({sections}) => (
     <h2 className='mb2'>Fixed nav when scrolled past</h2>
 
     <div className='left-align mb4'>
-      <pre className='mb2'><code>
-        {`
-<InViewMonitor
-  intoViewRatioShownThreshold={0}
-  classNameInitial='tabs'
-  classNameScrolledPastView='tabs tabs--fixed'
->
-  <TabsHere />
-</InViewMonitor>
-`}
-      </code></pre>
+      <Highlight className='javascript'>
+        {`return (
+  <InViewMonitor
+    intoViewRatioShownThreshold={0}
+    classNameInitial='tabs'
+    classNameScrolledPastView='tabs tabs--fixed'
+  >
+    <TabsHere />
+  </InViewMonitor>
+)`}
+      </Highlight>
     </div>
 
     <InViewMonitor

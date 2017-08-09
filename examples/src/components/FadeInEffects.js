@@ -1,4 +1,5 @@
 import React from 'react'
+import Highlight from 'react-highlight'
 
 // import InViewMonitor from 'react-inview-monitor'
 import InViewMonitor from '../../../src/'
@@ -37,17 +38,17 @@ const FadeInEffects = () => (
     <h2 className='mb2'>Scroll into view animations</h2>
 
     <div className='left-align mb4'>
-      <pre><code>
-        {`
-  // for each each box
-
+      <Highlight className='javascript'>
+        {`// for each each box
+return (
   <InViewMonitor
     classNameInitial='vis-hidden'
-    classNameOnScrollIntoView='animated fadeInUp'
+    classNameOnScrollIntoView='animated fadeInUp' // fadeInLeft, or fadeInRight
   >
     <ColoredBox />
-  </InViewMonitor>`}
-      </code></pre>
+  </InViewMonitor>
+)`}
+      </Highlight>
 
     <code>animated</code> and <code>fadeInUp</code> comes from the great <a target='blank' href='https://daneden.github.io/animate.css/'>animate.css library</a>.
     </div>
