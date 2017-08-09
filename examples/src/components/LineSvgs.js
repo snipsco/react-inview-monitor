@@ -8,12 +8,12 @@ import Speaker from './icon-elements/Speaker'
 import Thermostat from './icon-elements/Thermostat'
 import Lightbulb from './icon-elements/Lightbulb'
 
-const LineSvgs = () => (
+const LineSvgs = () =>
   <div>
-    <h2 className='mb2'>SVG line animations triggered by scroll into view</h2>
+    <h2 className="mb2">SVG line animations triggered by scroll into view</h2>
 
-    <div className='left-align mb4'>
-      <Highlight className='javascript'>
+    <div className="left-align mb4">
+      <Highlight className="javascript">
         {`// each svg icon below uses ScrollAnimateInLineSvg,
 // which accepts an Component that renders an svg using paths (not fills).
 
@@ -33,19 +33,20 @@ const ScrollAnimateInLineSvg = ({SvgElement}) => (
 )`}
       </Highlight>
       The magic 🎩 for automatically adding line animations to SVGs handled by{' '}
-      <a target='blank' href='https://github.com/moarwick/react-mt-svg-lines/'>react-mt-svg-lines</a>.
+      <a target="blank" href="https://github.com/moarwick/react-mt-svg-lines/">
+        react-mt-svg-lines
+      </a>.
     </div>
 
-    <div className='mb4'>
+    <div className="mb4">
       <ScrollAnimateInLineSvg SvgElement={<Thermostat />} />
     </div>
-    <div className='mb4'>
+    <div className="mb4">
       <ScrollAnimateInLineSvg SvgElement={<Lightbulb />} />
     </div>
-    <div className='mb4'>
+    <div className="mb4">
       <ScrollAnimateInLineSvg SvgElement={<Laundry />} />
     </div>
   </div>
-)
 
 export default LineSvgs

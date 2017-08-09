@@ -1,6 +1,6 @@
 // calcule the offset in pixels to top of the site,
 // from a DOM element (el)
-export default function getElementOffset (el) {
+export default function getElementOffset(el) {
   let top = 0
   let left = 0
 

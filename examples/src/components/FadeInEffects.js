@@ -16,28 +16,27 @@ const COLORS = [
   '#71BDFC'
 ]
 
-const FadeInItem = ({idx, fadeInClass = 'fadeInUp'}) => (
+const FadeInItem = ({ idx, fadeInClass = 'fadeInUp' }) =>
   <InViewMonitor
     key={idx}
-    classNameInitial='col-3 vis-hidden'
+    classNameInitial="col-3 vis-hidden"
     classNameOnScrollIntoView={`col-3 fadeineffects__item animated ${fadeInClass}`}
   >
     <div
-      className='rounded'
+      className="rounded"
       style={{
         height: '200px',
         backgroundColor: COLORS[idx]
       }}
     />
   </InViewMonitor>
-)
 
-const FadeInEffects = () => (
+const FadeInEffects = () =>
   <div>
-    <h2 className='mb2'>Scroll into view animations</h2>
+    <h2 className="mb2">Scroll into view animations</h2>
 
-    <div className='left-align mb4'>
-      <Highlight className='javascript'>
+    <div className="left-align mb4">
+      <Highlight className="javascript">
         {`// for each each box
 return (
   <InViewMonitor
@@ -48,28 +47,29 @@ return (
   </InViewMonitor>
 )`}
       </Highlight>
-
-    <code>animated</code> and <code>fadeInUp</code> comes from the great <a target='blank' href='https://daneden.github.io/animate.css/'>animate.css library</a>.
+      <code>animated</code> and <code>fadeInUp</code> comes from the great{' '}
+      <a target="blank" href="https://daneden.github.io/animate.css/">
+        animate.css library
+      </a>.
     </div>
 
-    <div className='flex justify-between mb3'>
-      <FadeInItem idx={0}/>
-      <FadeInItem idx={1}/>
-      <FadeInItem idx={2}/>
+    <div className="flex justify-between mb3">
+      <FadeInItem idx={0} />
+      <FadeInItem idx={1} />
+      <FadeInItem idx={2} />
     </div>
 
-    <div className='flex justify-between mb3'>
-      <FadeInItem idx={3} fadeInClass='fadeInLeft'/>
-      <FadeInItem idx={4} fadeInClass='fadeInLeft'/>
-      <FadeInItem idx={5} fadeInClass='fadeInLeft'/>
+    <div className="flex justify-between mb3">
+      <FadeInItem idx={3} fadeInClass="fadeInLeft" />
+      <FadeInItem idx={4} fadeInClass="fadeInLeft" />
+      <FadeInItem idx={5} fadeInClass="fadeInLeft" />
     </div>
 
-    <div className='flex justify-between mb3'>
-      <FadeInItem idx={6} fadeInClass='fadeInRight'/>
-      <FadeInItem idx={7} fadeInClass='fadeInRight'/>
-      <FadeInItem idx={8} fadeInClass='fadeInRight'/>
+    <div className="flex justify-between mb3">
+      <FadeInItem idx={6} fadeInClass="fadeInRight" />
+      <FadeInItem idx={7} fadeInClass="fadeInRight" />
+      <FadeInItem idx={8} fadeInClass="fadeInRight" />
     </div>
   </div>
-)
 
 export default FadeInEffects

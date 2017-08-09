@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const NOOP_FN = () => {}
 
 class Video extends Component {
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     const { src, isPlaying } = this.props
     if (prevProps.src !== src) {
       this._videoEl.load()
@@ -18,8 +18,8 @@ class Video extends Component {
       }
     }
   }
-  render () {
-    const {src} = this.props
+  render() {
+    const { src } = this.props
     return (
       <video
         ref={el => {
@@ -28,10 +28,7 @@ class Video extends Component {
         muted
         loop
       >
-        <source
-          src={src}
-          type='video/mp4'
-        />
+        <source src={src} type="video/mp4" />
         ))}
       </video>
     )

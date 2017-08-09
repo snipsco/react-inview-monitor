@@ -5,17 +5,23 @@ import throttle from 'lodash.throttle'
 import getElementOffset from './getElementOffset'
 
 class InviewMonitor extends Component {
-  constructor (props) {
+  constructor(props) {
     super()
     this.state = {
       className: props.classNameInitial || ''
     }
     this._handleScroll = this._handleScroll.bind(this)
   }
-  componentDidMount () {
-    const { useInviewMonitor, mountInitDelayTime, intoViewRatioShownThreshold } = this.props
-    if (!useInviewMonitor ||
-      typeof useInviewMonitor === 'function' && !useInviewMonitor()) {
+  componentDidMount() {
+    const {
+      useInviewMonitor,
+      mountInitDelayTime,
+      intoViewRatioShownThreshold
+    } = this.props
+    if (
+      !useInviewMonitor ||
+      (typeof useInviewMonitor === 'function' && !useInviewMonitor())
+    ) {
       return
     }
     // we are about to look into the DOM for positions of elements,
@@ -34,10 +40,16 @@ class InviewMonitor extends Component {
       const elementHeight = this._element.getBoundingClientRect().height
 
       // when element is just above the bottom of the screen
-      this._scrollIntoViewThreshold = elementOffsetTop - window.innerHeight + (elementHeight * intoViewRatioShownThreshold)
+      this._scrollIntoViewThreshold =
+        elementOffsetTop -
+        window.innerHeight +
+        elementHeight * intoViewRatioShownThreshold
 
       // when bottom of element is just at the top of the screen (about to be scrolled past)
-      this._scrollOutOffViewThreshold = elementOffsetTop + elementHeight - (elementHeight * (1 - intoViewRatioShownThreshold))
+      this._scrollOutOffViewThreshold =
+        elementOffsetTop +
+        elementHeight -
+        elementHeight * (1 - intoViewRatioShownThreshold)
 
       this._throttledScroll = throttle(this._handleScroll, 100)
       window.addEventListener('scroll', this._throttledScroll)
@@ -45,10 +57,10 @@ class InviewMonitor extends Component {
       this._handleScroll()
     }, mountInitDelayTime)
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('scroll', this._throttledScroll)
   }
-  _handleScroll () {
+  _handleScroll() {
     const yOffset = window.pageYOffset
     const {
       classNameOnScrollIntoView,
@@ -81,7 +93,7 @@ class InviewMonitor extends Component {
       }
     }
   }
-  render () {
+  render() {
     const { childProps, className, style } = this.state
     let { children } = this.props
     if (childProps && Object.keys(childProps).length) {
@@ -96,7 +108,9 @@ class InviewMonitor extends Component {
             this._element = e
           }
         }}
-      >{children}</div>
+      >
+        {children}
+      </div>
     )
   }
 }
