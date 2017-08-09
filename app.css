@@ -5,6 +5,13 @@ body {
   visibility: hidden;
 }
 
+.main {
+  background-color: #fafafa;
+}
+.main-header__install-cta {
+  border-color: blue;
+}
+
 .fadeineffects__item:nth-of-type(1) {
   animation-delay: 100ms;
 }
@@ -46,13 +53,20 @@ body {
   text-align: left;
   height: 36px; /* preserve space when body becomes fixed */
 }
+.tabs__body {
+  border-bottom: 1px solid grey;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
 .tabs--fixed .tabs__body {
   position: fixed;
   z-index: 10;
   margin-bottom: 0;
-  padding-bottom: 0.5rem;
   top: 0;
-  background-color: #eee;
+  left: 0;
+  right: 0;
+  border-bottom-color: transparent;
+  background-color: blue;
   animation: fade-in 0.15s cubic-bezier(0.25, 0.15, 0.3, 1.1) backwards;
 }
 .tabs__tab {
@@ -62,6 +76,9 @@ body {
   padding: 0.5rem 0.75rem;
   margin: 0 0.125rem -2px 0.125rem;
   color: #202020;
+}
+.tabs--fixed .tabs__tab {
+  color: white;
 }
 .tabs__tab:target {
   font-weight: bold;
@@ -74,4 +91,17 @@ body {
   100% {
     opacity: 100;
   }
+}
+
+/* via: http://tholman.com/github-corners/ */
+.github-corner {z-index: 1000;}
+.github-corner__background {fill:#151513; color:#fff;}
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out;transform-origin: 130px 106px;}
+@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+
+/* override hljs */
+.hljs {
+  padding: 1rem;
+  font-size: 0.875rem;
 }
