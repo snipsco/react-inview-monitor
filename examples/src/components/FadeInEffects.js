@@ -1,7 +1,6 @@
 import React from 'react'
 import Highlight from 'react-highlight'
 
-// import InViewMonitor from 'react-inview-monitor'
 import InViewMonitor from '../../../src/'
 
 const COLORS = [

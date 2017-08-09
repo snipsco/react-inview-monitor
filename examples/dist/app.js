@@ -34923,9 +34923,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var COLORS = ['#3A78D5', '#9F61FD', '#D96CBF', '#EA5054', '#F4A16A', '#FDE169', '#93F18D', '#7FE8C5', '#96ECF8', '#71BDFC'];
 
-// import InViewMonitor from 'react-inview-monitor'
-
-
 var FadeInItem = function FadeInItem(_ref) {
   var idx = _ref.idx,
       _ref$fadeInClass = _ref.fadeInClass,

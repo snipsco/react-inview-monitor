@@ -1,6 +1,6 @@
 import React from 'react'
-
 import Highlight from 'react-highlight'
+
 import InViewMonitor from '../../../src/'
 import Video from './Video'
 
