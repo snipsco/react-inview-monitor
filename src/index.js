@@ -2,107 +2,105 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import throttle from 'lodash.throttle'
 
-import getElementOffset from './getElementOffset'
-
 class InviewMonitor extends Component {
   constructor(props) {
     super()
     this.state = {
-      className: props.classNameInitial || ''
+      className: props.classNameNotInView,
+      childProps: props.childPropsNotInView
     }
-    this._handleScroll = this._handleScroll.bind(this)
+    this.onIntersectionAll = this.onIntersectionAll.bind(this)
+    this.onIntersection = this.onIntersection.bind(this)
   }
   componentDidMount() {
-    const {
-      useInviewMonitor,
-      mountInitDelayTime,
-      intoViewRatioShownThreshold
-    } = this.props
+    if (!window.IntersectionObserver) {
+      console.error(`react-inview-monitor found no support for IntersectionObserver.
+Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver ?`)
+      return
+    }
+    const { useInviewMonitor, intoViewMargin } = this.props
     if (
+      !this._element ||
       !useInviewMonitor ||
       (typeof useInviewMonitor === 'function' && !useInviewMonitor())
     ) {
       return
     }
-    // we are about to look into the DOM for positions of elements,
-    // which we will then cache and re-use to assert whether we have
-    // scrolled past them etc.
-    // Hence this only works if the positions we get here are correct forever,
-    // as long as this element stays mounted.
-    // (although if this "fails" it will only cause the scrollIntoView props
-    //  to be used too early, leading "only" to too early fade-in effects etc
-    //  - not absolutely critical)
-    // Reasonable to try to wait for images to load,
-    // but hard to know generically how long this will take;
-    // depends on the site, so let the user specify.
-    setTimeout(() => {
-      const elementOffsetTop = getElementOffset(this._element).top
-      const elementHeight = this._element.getBoundingClientRect().height
-
-      // when element is just above the bottom of the screen
-      this._scrollIntoViewThreshold =
-        elementOffsetTop -
-        window.innerHeight +
-        elementHeight * intoViewRatioShownThreshold
-
-      // when bottom of element is just at the top of the screen (about to be scrolled past)
-      this._scrollOutOffViewThreshold =
-        elementOffsetTop +
-        elementHeight -
-        elementHeight * (1 - intoViewRatioShownThreshold)
-
-      this._throttledScroll = throttle(this._handleScroll, 100)
-      window.addEventListener('scroll', this._throttledScroll)
-      // in case user has scrolled already
-      this._handleScroll()
-    }, mountInitDelayTime)
+    const options = {
+      rootMargin: intoViewMargin
+    }
+    // any performance benefits from trying to re-use the observer?
+    // possible enhancement to add later on.
+    this.observer = new window.IntersectionObserver(
+      this.onIntersectionAll,
+      options
+    )
+    this.observer.observe(this._element)
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this._throttledScroll)
+    this.observer && this.observer.disconnect()
   }
-  _handleScroll() {
-    const yOffset = window.pageYOffset
+  onIntersectionAll(entries) {
+    entries.forEach(this.onIntersection)
+  }
+  onIntersection(entry) {
+    if (entry.target !== this._element) {
+      // this check only makes sense as long as we _dont_ share the same observer
+      // between component instances.
+      return
+    }
     const {
-      classNameOnScrollIntoView,
-      childPropsOnScrollIntoView,
-      classNameScrolledPastView,
-      classNameInitial
+      classNameNotInView,
+      classNameInView,
+      toggleClassNameOnInView,
+      childPropsInView,
+      childPropsNotInView,
+      toggleChildPropsOnInView
     } = this.props
 
-    if (yOffset > this._scrollIntoViewThreshold) {
-      if (classNameOnScrollIntoView || childPropsOnScrollIntoView) {
-        this.setState({
-          className: classNameOnScrollIntoView,
-          childProps: childPropsOnScrollIntoView
-        })
-        window.removeEventListener('scroll', this._throttledScroll)
-      }
+    const nowInView = entry.intersectionRatio > 0
+    const toggleBehavior =
+      (classNameInView && toggleClassNameOnInView) ||
+      (childPropsInView && toggleChildPropsOnInView)
+
+    if (nowInView && !toggleBehavior) {
+      this.setState({
+        className: classNameInView,
+        childProps: childPropsInView
+      })
+      this.observer.unobserve(entry.target)
+      // is there any point trying to determine whether observer is now
+      // no longer observering anything, and hence should be disconnected,
+      // or is this kind of automatic?
+      // To be investigated.
+      return
     }
-    if (classNameScrolledPastView) {
-      const currentlyScrolledPast = yOffset > this._scrollOutOffViewThreshold
-      if (currentlyScrolledPast && !this._scrolledPast) {
+
+    if (toggleBehavior) {
+      if (nowInView) {
+        // just entered view
         this.setState({
-          className: classNameScrolledPastView
+          className: classNameInView,
+          childProps: childPropsInView
         })
-        this._scrolledPast = true
-      } else if (!currentlyScrolledPast && this._scrolledPast) {
+      } else {
+        // just left view
         this.setState({
-          className: classNameInitial
+          className: classNameNotInView,
+          childProps: childPropsNotInView
         })
-        this._scrolledPast = false
       }
     }
   }
   render() {
-    const { childProps, className, style } = this.state
-    let { children } = this.props
+    const { childProps, className } = this.state
+    let { useInviewMonitor, children } = this.props
     if (childProps && Object.keys(childProps).length) {
       children = React.cloneElement(children, childProps)
     }
     return (
       <div
         className={className}
-        style={style}
         ref={e => {
           if (e) {
             this._element = e
@@ -116,30 +114,31 @@ class InviewMonitor extends Component {
 }
 
 InviewMonitor.propTypes = {
-  // Common usage: first set vis-hidden for classNameInitial,
-  classNameInitial: PropTypes.string,
-  // then use animate classes in onScrollIntoView, to trigger fade in etc animations
-  classNameOnScrollIntoView: PropTypes.string,
-  // can be used for fixed navigation etc
-  classNameScrolledPastView: PropTypes.string,
+  // common usage: animate classes in onScrollIntoView, to trigger fade in etc animations
+  classNameInView: PropTypes.string,
+  // can be used to hide elements to be animated in.
+  classNameNotInView: PropTypes.string,
+  // can be used to switch classes on/off, for fixed navigation based on scroll point, etc
+  toggleClassNameOnInView: PropTypes.bool,
 
   // another use for the InviewMonitor is to start passing a prop into an element
   // only when it has been scrolled into view; f.e. to autoplay a video.
-  childPropsOnScrollIntoView: PropTypes.object,
+  childPropsInView: PropTypes.object,
+  childPropsNotInView: PropTypes.object,
+  // can be used to turn prop(s) on/off based of on view, f.e. stop/start video/sound
+  toggleChildPropsOnInView: PropTypes.bool,
 
   // whether to run any scroll monintoring at all;
   // because easier to toggle this prop, then toggle not using the component at all.
   useInviewMonitor: PropTypes.func,
 
-  mountInitDelayTime: PropTypes.number,
-  intoViewRatioShownThreshold: PropTypes.number
+  intoViewMargin: PropTypes.string
 }
 InviewMonitor.defaultProps = {
+  classNameNotInView: '',
+  childPropsNotInView: {},
   useInviewMonitor: () => true,
-  mountInitDelayTime: 0,
-  // how much of the element should have be into view before it's considered
-  // scrolled into view? default is 15%
-  intoViewRatioShownThreshold: 0.15
+  intoViewMargin: '-20%'
 }
 
 export default InviewMonitor
