@@ -19,9 +19,9 @@ const LineSvgs = () =>
 
 const ScrollAnimateInLineSvg = ({SvgElement}) => (
 <InViewMonitor
-  classNameInitial='vis-hidden'
-  classNameOnScrollIntoView=''
-  childPropsOnScrollIntoView={{animate: true}}
+  classNameNotInView='vis-hidden'
+  classNameInView=''
+  childPropsInView={{animate: true}}
 >
   <MtSvgLines
     duration={1500}

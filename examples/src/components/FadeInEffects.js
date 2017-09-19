@@ -19,8 +19,8 @@ const COLORS = [
 const FadeInItem = ({ idx, fadeInClass = 'fadeInUp' }) =>
   <InViewMonitor
     key={idx}
-    classNameInitial="col-3 vis-hidden"
-    classNameOnScrollIntoView={`col-3 fadeineffects__item animated ${fadeInClass}`}
+    classNameNotInView="col-3 vis-hidden"
+    classNameInView={`col-3 fadeineffects__item animated ${fadeInClass}`}
   >
     <div
       className="rounded"
@@ -40,8 +40,8 @@ const FadeInEffects = () =>
         {`// for each each box
 return (
   <InViewMonitor
-    classNameInitial='vis-hidden'
-    classNameOnScrollIntoView='animated fadeInUp' // fadeInLeft, or fadeInRight
+    classNameNotInView='vis-hidden'
+    classNameInView='animated fadeInUp' // fadeInLeft, or fadeInRight
   >
     <ColoredBox />
   </InViewMonitor>

@@ -17,7 +17,9 @@ const AutoplayExample = () =>
 
 return (
   <InViewMonitor
-    childPropsOnScrollIntoView={{isPlaying: true}}
+    childPropsInView={{isPlaying: true}}
+    toggleChildPropsOnInView={true}
+    intoViewMargin='-100px' // large value just to demonstrate that it starts/stops
   >
     <Video src={videoSrc} />
   </InViewMonitor>
@@ -26,7 +28,11 @@ return (
     </div>
 
     <div>
-      <InViewMonitor childPropsOnScrollIntoView={{ isPlaying: true }}>
+      <InViewMonitor
+        childPropsInView={{ isPlaying: true }}
+        toggleChildPropsOnInView={true}
+        intoViewMargin="-100px"
+      >
         <Video src={videoSource} />
       </InViewMonitor>
     </div>
