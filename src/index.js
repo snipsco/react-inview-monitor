@@ -58,7 +58,7 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
       toggleChildPropsOnInView
     } = this.props
 
-    const nowInView = entry.intersectionRatio > 0
+    const nowInView = entry.isIntersecting
     const toggleBehavior =
       (classNameInView && toggleClassNameOnInView) ||
       (childPropsInView && toggleChildPropsOnInView)
