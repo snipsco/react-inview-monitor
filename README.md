@@ -15,11 +15,15 @@ Note: this library is not neither an overly generic, comprehensive, nor low-leve
 
 ## Usage
 
+### IntersectionObserver support
+This library uses [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) under the hood. Until it is supported in all modern browsers, we recommend that you use it together with a polyfill, like this one (which only polyfills if necessary):
+https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
+
 ### Reveal animation when scrolled into view
 ```js
 <InViewMonitor
-  classNameInitial='vis-hidden'
-  classNameOnScrollIntoView='animated fadeInUp'
+  classNameNotInView='vis-hidden'
+  classNameInView='animated fadeInUp'
 >
   <ElementToAnimateIn />
 </InViewMonitor>
@@ -27,10 +31,12 @@ Note: this library is not neither an overly generic, comprehensive, nor low-leve
 Note: these classes are not included. We are big fans of [animate.css](https://github.com/daneden/animate.css) for simple "just add water" animations.
 
 ### Send custom prop to children when scrolled into view
-Can be used for example to auto play a video
+Can be used for example to auto play a video.
+Toggle prop saves GPU and battery by stopping the video when no longer in view!
 ```js
 <InViewMonitor
-  childPropsOnScrollIntoView={{isPlaying: true}}
+  childPropsInView={{isPlaying: true}}
+  toggleChildPropsOnInView={true}
 >
   <VideoPlayer />
 </InViewMonitor>
@@ -43,19 +49,11 @@ Can be used for example to auto play a video
 
 | Property | Type | Description
 :---|:---|:---
-| `classNameInitial` | string | className for initial render, typically used to visually hide if element will be animated in. |
-| `classNameOnScrollIntoView` | string | className added when scrolled into view, typically animation related classes. |
-| `classNameScrolledPastView` | string | className added/removed when scrolled out of view and back in again, typically used for fixing navigation etc on scroll. |
-| `childPropsOnScrollIntoView` | object | props propagated to the child element. Can be used to start video, start complex animations, etc. |
-| `intoViewRatioShownThreshold` | number | Proportion of element that needs to be inside viewport before it's considered in view. `Default: 0.15`  |
+| `classNameInView` | string | common use: add classes to animate in element |
+| `classNameNotInView` | string | common use: visually hide element to be animated in. |
+| `toggleClassNameOnInView` | boolean | Toggle between `classNameInView/classNameNotInView`, instead of just replacing the first time element comes into view and then removing monitoring. `default: false` |
+| `childPropsInView` | object | props propagated to the child element. Can be used to start video, complex animations and more. |
+| `childPropsNotInView` | object | `default: {}` |
+| `toggleChildPropsOnInView` | boolean | Toggle between `childPropsInView/childPropsNotInView` instead of just add `childPropsInView` the first time element comes into view and then removing monitoring.. `default: false` |
+| `intoViewMargin` | string - css margin | Margin added to viewport for area to consider “in view”, can be negative. Use f.e. with positive value for lazy loading content just before in view, or with negative to start fading in element just after in view. Must be `px` or `%`. Default: ‘-20%’.  |
 | `useInviewMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
-| `mountInitDelayTime` | number | Can be used if loading in large images etc that changes viewport coordinates on page |
-
-
-## Performance Note
-
-Each instance of InViewMonitor sets up a (throttled) scroll listener
-on the window. This means a large number of concurrent InViewMonitor instances
-will likely cause performance issues. If you are looking to do something likely
-fading in every item on scroll in a long list, you will be better of setting up
-your own single scroll listener and do the calculations for all items there.
