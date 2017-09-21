@@ -13,7 +13,9 @@ const AutoplayExample = () =>
     <div className="left-align mb4">
       <Highlight className="javascript">
         {`// given a Video component that can be started by changing isPlaying prop,
-// an autoplaying video via scroll is trivial:
+// an autoplaying video via scroll is trivial.
+// the toggleChildPropsOnInView prop allows us to stop it again as soon as
+// it goes out of view, saving CPU and increasing battery life for mobile devices! 💪
 
 return (
   <InViewMonitor

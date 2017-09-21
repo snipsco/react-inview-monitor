@@ -36661,7 +36661,7 @@ var AutoplayExample = function AutoplayExample() {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        '// given a Video component that can be started by changing isPlaying prop,\n// an autoplaying video via scroll is trivial:\n\nreturn (\n  <InViewMonitor\n    childPropsInView={{isPlaying: true}}\n    toggleChildPropsOnInView={true}\n    intoViewMargin=\'-100px\' // large value just to demonstrate that it starts/stops\n  >\n    <Video src={videoSrc} />\n  </InViewMonitor>\n)'
+        '// given a Video component that can be started by changing isPlaying prop,\n// an autoplaying video via scroll is trivial.\n// the toggleChildPropsOnInView prop allows us to stop it again as soon as\n// it goes out of view, saving CPU and increasing battery life for mobile devices! \uD83D\uDCAA\n\nreturn (\n  <InViewMonitor\n    childPropsInView={{isPlaying: true}}\n    toggleChildPropsOnInView={true}\n    intoViewMargin=\'-100px\' // large value just to demonstrate that it starts/stops\n  >\n    <Video src={videoSrc} />\n  </InViewMonitor>\n)'
       )
     ),
     _react2.default.createElement(
