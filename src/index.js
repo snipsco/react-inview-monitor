@@ -55,19 +55,26 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
       toggleClassNameOnInView,
       childPropsInView,
       childPropsNotInView,
-      toggleChildPropsOnInView
+      toggleChildPropsOnInView,
+      onInView,
+      onNotInView,
+      repeatOnInView
     } = this.props
 
     const nowInView = entry.isIntersecting
     const toggleBehavior =
       (classNameInView && toggleClassNameOnInView) ||
-      (childPropsInView && toggleChildPropsOnInView)
+      (childPropsInView && toggleChildPropsOnInView) ||
+      ((onInView || onNotInView) && repeatOnInView)
 
     if (nowInView && !toggleBehavior) {
       this.setState({
         className: classNameInView,
         childProps: childPropsInView
       })
+      if (onInView && typeof onInView === 'function') {
+        onInView(entry)
+      }
       this.observer.unobserve(entry.target)
       // is there any point trying to determine whether observer is now
       // no longer observering anything, and hence should be disconnected,
@@ -83,12 +90,18 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
           className: classNameInView,
           childProps: childPropsInView
         })
+        if (onInView && typeof onInView === 'function') {
+          onInView(entry)
+        }
       } else {
         // just left view
         this.setState({
           className: classNameNotInView,
           childProps: childPropsNotInView
         })
+        if (onNotInView && typeof onNotInView === 'function') {
+          onNotInView(entry)
+        }
       }
     }
   }
@@ -127,6 +140,11 @@ InviewMonitor.propTypes = {
   childPropsNotInView: PropTypes.object,
   // can be used to turn prop(s) on/off based of on view, f.e. stop/start video/sound
   toggleChildPropsOnInView: PropTypes.bool,
+
+  // can be used to track elements coming into view
+  onInView: PropTypes.func,
+  onNotInView: PropTypes.func,
+  repeatOnInView: PropTypes.bool,
 
   // whether to run any scroll monintoring at all;
   // because easier to toggle this prop, then toggle not using the component at all.

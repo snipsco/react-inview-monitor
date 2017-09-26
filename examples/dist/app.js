@@ -4793,17 +4793,23 @@ var InviewMonitor = function (_Component) {
           toggleClassNameOnInView = _props2.toggleClassNameOnInView,
           childPropsInView = _props2.childPropsInView,
           childPropsNotInView = _props2.childPropsNotInView,
-          toggleChildPropsOnInView = _props2.toggleChildPropsOnInView;
+          toggleChildPropsOnInView = _props2.toggleChildPropsOnInView,
+          onInView = _props2.onInView,
+          onNotInView = _props2.onNotInView,
+          repeatOnInView = _props2.repeatOnInView;
 
 
       var nowInView = entry.isIntersecting;
-      var toggleBehavior = classNameInView && toggleClassNameOnInView || childPropsInView && toggleChildPropsOnInView;
+      var toggleBehavior = classNameInView && toggleClassNameOnInView || childPropsInView && toggleChildPropsOnInView || (onInView || onNotInView) && repeatOnInView;
 
       if (nowInView && !toggleBehavior) {
         this.setState({
           className: classNameInView,
           childProps: childPropsInView
         });
+        if (onInView && typeof onInView === 'function') {
+          onInView(entry);
+        }
         this.observer.unobserve(entry.target);
         // is there any point trying to determine whether observer is now
         // no longer observering anything, and hence should be disconnected,
@@ -4819,12 +4825,18 @@ var InviewMonitor = function (_Component) {
             className: classNameInView,
             childProps: childPropsInView
           });
+          if (onInView && typeof onInView === 'function') {
+            onInView(entry);
+          }
         } else {
           // just left view
           this.setState({
             className: classNameNotInView,
             childProps: childPropsNotInView
           });
+          if (onNotInView && typeof onNotInView === 'function') {
+            onNotInView(entry);
+          }
         }
       }
     }
@@ -4875,6 +4887,11 @@ InviewMonitor.propTypes = {
   childPropsNotInView: _propTypes2.default.object,
   // can be used to turn prop(s) on/off based of on view, f.e. stop/start video/sound
   toggleChildPropsOnInView: _propTypes2.default.bool,
+
+  // can be used to track elements coming into view
+  onInView: _propTypes2.default.func,
+  onNotInView: _propTypes2.default.func,
+  repeatOnInView: _propTypes2.default.bool,
 
   // whether to run any scroll monintoring at all;
   // because easier to toggle this prop, then toggle not using the component at all.
@@ -34896,7 +34913,10 @@ var FadeInItem = function FadeInItem(_ref) {
     {
       key: idx,
       classNameNotInView: 'col-3 vis-hidden',
-      classNameInView: 'col-3 fadeineffects__item animated ' + fadeInClass
+      classNameInView: 'col-3 fadeineffects__item animated ' + fadeInClass,
+      onInView: function onInView(entry) {
+        return console.log(idx + 'now in view', entry);
+      }
     },
     _react2.default.createElement('div', {
       className: 'rounded',
