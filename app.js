@@ -4790,20 +4790,28 @@ var InviewMonitor = function (_Component) {
       var _props2 = this.props,
           classNameNotInView = _props2.classNameNotInView,
           classNameInView = _props2.classNameInView,
+          classNameAboveView = _props2.classNameAboveView,
+          classNameNotAboveView = _props2.classNameNotAboveView,
           toggleClassNameOnInView = _props2.toggleClassNameOnInView,
           childPropsInView = _props2.childPropsInView,
           childPropsNotInView = _props2.childPropsNotInView,
-          toggleChildPropsOnInView = _props2.toggleChildPropsOnInView;
+          toggleChildPropsOnInView = _props2.toggleChildPropsOnInView,
+          onInView = _props2.onInView,
+          onNotInView = _props2.onNotInView,
+          repeatOnInView = _props2.repeatOnInView;
 
 
       var nowInView = entry.isIntersecting;
-      var toggleBehavior = classNameInView && toggleClassNameOnInView || childPropsInView && toggleChildPropsOnInView;
+      var toggleBehavior = (classNameInView || classNameAboveView) && toggleClassNameOnInView || childPropsInView && toggleChildPropsOnInView || (onInView || onNotInView) && repeatOnInView;
 
       if (nowInView && !toggleBehavior) {
         this.setState({
           className: classNameInView,
           childProps: childPropsInView
         });
+        if (onInView && typeof onInView === 'function') {
+          onInView(entry);
+        }
         this.observer.unobserve(entry.target);
         // is there any point trying to determine whether observer is now
         // no longer observering anything, and hence should be disconnected,
@@ -4813,18 +4821,43 @@ var InviewMonitor = function (_Component) {
       }
 
       if (toggleBehavior) {
+        // Check if we scrolled past view
+        if (classNameAboveView) {
+          if (
+          // we just left the view
+          !nowInView &&
+          // are we now above it (i.e. scrolled past)
+          entry.boundingClientRect.top <= 0) {
+            this.setState({
+              className: classNameAboveView
+            });
+          } else {
+            this.setState({
+              className: classNameNotAboveView || ''
+            });
+          }
+          return;
+        }
+
+        // check regular in/out of view
         if (nowInView) {
           // just entered view
           this.setState({
             className: classNameInView,
             childProps: childPropsInView
           });
+          if (onInView && typeof onInView === 'function') {
+            onInView(entry);
+          }
         } else {
           // just left view
           this.setState({
             className: classNameNotInView,
             childProps: childPropsNotInView
           });
+          if (onNotInView && typeof onNotInView === 'function') {
+            onNotInView(entry);
+          }
         }
       }
     }
@@ -4866,6 +4899,9 @@ InviewMonitor.propTypes = {
   classNameInView: _propTypes2.default.string,
   // can be used to hide elements to be animated in.
   classNameNotInView: _propTypes2.default.string,
+  // can be used as a trigger for "scrolled past view", f.e. for sticky headers
+  classNameAboveView: _propTypes2.default.string,
+  classNameNotAboveView: _propTypes2.default.string,
   // can be used to switch classes on/off, for fixed navigation based on scroll point, etc
   toggleClassNameOnInView: _propTypes2.default.bool,
 
@@ -4875,6 +4911,11 @@ InviewMonitor.propTypes = {
   childPropsNotInView: _propTypes2.default.object,
   // can be used to turn prop(s) on/off based of on view, f.e. stop/start video/sound
   toggleChildPropsOnInView: _propTypes2.default.bool,
+
+  // can be used to track elements coming into view
+  onInView: _propTypes2.default.func,
+  onNotInView: _propTypes2.default.func,
+  repeatOnInView: _propTypes2.default.bool,
 
   // whether to run any scroll monintoring at all;
   // because easier to toggle this prop, then toggle not using the component at all.
@@ -22646,14 +22687,14 @@ var ScrolledPastFixedNav = function ScrolledPastFixedNav(_ref) {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        'return (\n  <InViewMonitor\n    classNameInView=\'tabs\'\n    classNameNotInView=\'tabs tabs--fixed\'\n    intoViewMargin=\'0px\'\n  >\n    <TabsHere />\n  </InViewMonitor>\n)'
+        'return (\n  <InViewMonitor\n    classNameNotAboveView=\'tabs\'\n    classNameAboveView=\'tabs tabs--fixed\'\n    intoViewMargin=\'0px\'\n  >\n    <TabsHere />\n  </InViewMonitor>\n)'
       )
     ),
     _react2.default.createElement(
       _src2.default,
       {
-        classNameInView: 'tabs',
-        classNameNotInView: 'tabs tabs--fixed',
+        classNameNotAboveView: 'tabs',
+        classNameAboveView: 'tabs tabs--fixed',
         toggleClassNameOnInView: true,
         intoViewMargin: '0px'
       },
@@ -35022,8 +35063,13 @@ var LineSvgs = function LineSvgs() {
     null,
     _react2.default.createElement(
       'h2',
-      { className: 'mb2' },
+      { className: 'mb1' },
       'SVG line animations triggered by scroll into view'
+    ),
+    _react2.default.createElement(
+      'p',
+      { className: 'mb2' },
+      'each svg icon in the demo below uses the ScrollAnimateInLineSvg component, which accepts an Component that renders an svg using paths (not fills).'
     ),
     _react2.default.createElement(
       'div',
@@ -35031,7 +35077,7 @@ var LineSvgs = function LineSvgs() {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        '// each svg icon below uses ScrollAnimateInLineSvg,\n// which accepts an Component that renders an svg using paths (not fills).\n\nconst ScrollAnimateInLineSvg = ({SvgElement}) => (\n<InViewMonitor\n  classNameNotInView=\'vis-hidden\'\n  classNameInView=\'\'\n  childPropsInView={{animate: true}}\n>\n  <MtSvgLines\n    duration={1500}\n    fade\n  >\n    {SvgElement}\n  </MtSvgLines>\n</InViewMonitor>\n)'
+        '\nconst ScrollAnimateInLineSvg = ({SvgElement}) => (\n<InViewMonitor\n  classNameNotInView=\'vis-hidden\'\n  classNameInView=\'\'\n  childPropsInView={{animate: true}}\n>\n  <MtSvgLines\n    duration={1500}\n    fade\n  >\n    {SvgElement}\n  </MtSvgLines>\n</InViewMonitor>\n)'
       ),
       'The magic \uD83C\uDFA9 for automatically adding line animations to SVGs handled by',
       ' ',
@@ -36652,8 +36698,25 @@ var AutoplayExample = function AutoplayExample() {
     null,
     _react2.default.createElement(
       'h2',
-      { className: 'mb2' },
+      { className: 'mb1' },
       'Autoplay video when in view'
+    ),
+    _react2.default.createElement(
+      'p',
+      { className: 'mb2' },
+      'Given a Video component that can be started by changing a ',
+      _react2.default.createElement(
+        'code',
+        null,
+        'isPlaying'
+      ),
+      ' prop, an autoplaying video via scroll is trivial. the ',
+      _react2.default.createElement(
+        'code',
+        null,
+        'toggleChildPropsOnInView'
+      ),
+      ' prop allows us to stop it again as soon as it goes out of view, saving CPU and increasing battery life for mobile devices! \uD83D\uDCAA'
     ),
     _react2.default.createElement(
       'div',
@@ -36661,7 +36724,7 @@ var AutoplayExample = function AutoplayExample() {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        '// given a Video component that can be started by changing isPlaying prop,\n// an autoplaying video via scroll is trivial.\n// the toggleChildPropsOnInView prop allows us to stop it again as soon as\n// it goes out of view, saving CPU and increasing battery life for mobile devices! \uD83D\uDCAA\n\nreturn (\n  <InViewMonitor\n    childPropsInView={{isPlaying: true}}\n    toggleChildPropsOnInView={true}\n    intoViewMargin=\'-100px\' // large value just to demonstrate that it starts/stops\n  >\n    <Video src={videoSrc} />\n  </InViewMonitor>\n)'
+        '\nreturn (\n  <InViewMonitor\n    childPropsInView={{isPlaying: true}}\n    toggleChildPropsOnInView={true}\n    intoViewMargin=\'-100px\' // large value just to demonstrate that it starts/stops\n  >\n    <Video src={videoSrc} />\n  </InViewMonitor>\n)'
       )
     ),
     _react2.default.createElement(
