@@ -4790,6 +4790,8 @@ var InviewMonitor = function (_Component) {
       var _props2 = this.props,
           classNameNotInView = _props2.classNameNotInView,
           classNameInView = _props2.classNameInView,
+          classNameAboveView = _props2.classNameAboveView,
+          classNameNotAboveView = _props2.classNameNotAboveView,
           toggleClassNameOnInView = _props2.toggleClassNameOnInView,
           childPropsInView = _props2.childPropsInView,
           childPropsNotInView = _props2.childPropsNotInView,
@@ -4800,7 +4802,7 @@ var InviewMonitor = function (_Component) {
 
 
       var nowInView = entry.isIntersecting;
-      var toggleBehavior = classNameInView && toggleClassNameOnInView || childPropsInView && toggleChildPropsOnInView || (onInView || onNotInView) && repeatOnInView;
+      var toggleBehavior = (classNameInView || classNameAboveView) && toggleClassNameOnInView || childPropsInView && toggleChildPropsOnInView || (onInView || onNotInView) && repeatOnInView;
 
       if (nowInView && !toggleBehavior) {
         this.setState({
@@ -4819,6 +4821,25 @@ var InviewMonitor = function (_Component) {
       }
 
       if (toggleBehavior) {
+        // Check if we scrolled past view
+        if (classNameAboveView) {
+          if (
+          // we just left the view
+          !nowInView &&
+          // are we now above it (i.e. scrolled past)
+          entry.boundingClientRect.top <= 0) {
+            this.setState({
+              className: classNameAboveView
+            });
+          } else {
+            this.setState({
+              className: classNameNotAboveView || ''
+            });
+          }
+          return;
+        }
+
+        // check regular in/out of view
         if (nowInView) {
           // just entered view
           this.setState({
@@ -4878,6 +4899,9 @@ InviewMonitor.propTypes = {
   classNameInView: _propTypes2.default.string,
   // can be used to hide elements to be animated in.
   classNameNotInView: _propTypes2.default.string,
+  // can be used as a trigger for "scrolled past view", f.e. for sticky headers
+  classNameAboveView: _propTypes2.default.string,
+  classNameNotAboveView: _propTypes2.default.string,
   // can be used to switch classes on/off, for fixed navigation based on scroll point, etc
   toggleClassNameOnInView: _propTypes2.default.bool,
 
@@ -22663,14 +22687,14 @@ var ScrolledPastFixedNav = function ScrolledPastFixedNav(_ref) {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        'return (\n  <InViewMonitor\n    classNameInView=\'tabs\'\n    classNameNotInView=\'tabs tabs--fixed\'\n    intoViewMargin=\'0px\'\n  >\n    <TabsHere />\n  </InViewMonitor>\n)'
+        'return (\n  <InViewMonitor\n    classNameNotAboveView=\'tabs\'\n    classNameAboveView=\'tabs tabs--fixed\'\n    intoViewMargin=\'0px\'\n  >\n    <TabsHere />\n  </InViewMonitor>\n)'
       )
     ),
     _react2.default.createElement(
       _src2.default,
       {
-        classNameInView: 'tabs',
-        classNameNotInView: 'tabs tabs--fixed',
+        classNameNotAboveView: 'tabs',
+        classNameAboveView: 'tabs tabs--fixed',
         toggleClassNameOnInView: true,
         intoViewMargin: '0px'
       },
@@ -34913,10 +34937,7 @@ var FadeInItem = function FadeInItem(_ref) {
     {
       key: idx,
       classNameNotInView: 'col-3 vis-hidden',
-      classNameInView: 'col-3 fadeineffects__item animated ' + fadeInClass,
-      onInView: function onInView(entry) {
-        return console.log(idx + 'now in view', entry);
-      }
+      classNameInView: 'col-3 fadeineffects__item animated ' + fadeInClass
     },
     _react2.default.createElement('div', {
       className: 'rounded',

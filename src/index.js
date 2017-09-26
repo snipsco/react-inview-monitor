@@ -52,6 +52,8 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
     const {
       classNameNotInView,
       classNameInView,
+      classNameAboveView,
+      classNameNotAboveView,
       toggleClassNameOnInView,
       childPropsInView,
       childPropsNotInView,
@@ -63,7 +65,7 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
 
     const nowInView = entry.isIntersecting
     const toggleBehavior =
-      (classNameInView && toggleClassNameOnInView) ||
+      ((classNameInView || classNameAboveView) && toggleClassNameOnInView) ||
       (childPropsInView && toggleChildPropsOnInView) ||
       ((onInView || onNotInView) && repeatOnInView)
 
@@ -84,6 +86,26 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
     }
 
     if (toggleBehavior) {
+      // Check if we scrolled past view
+      if (classNameAboveView) {
+        if (
+          // we just left the view
+          !nowInView &&
+          // are we now above it (i.e. scrolled past)
+          entry.boundingClientRect.top <= 0
+        ) {
+          this.setState({
+            className: classNameAboveView
+          })
+        } else {
+          this.setState({
+            className: classNameNotAboveView || ''
+          })
+        }
+        return
+      }
+
+      // check regular in/out of view
       if (nowInView) {
         // just entered view
         this.setState({
@@ -131,6 +153,9 @@ InviewMonitor.propTypes = {
   classNameInView: PropTypes.string,
   // can be used to hide elements to be animated in.
   classNameNotInView: PropTypes.string,
+  // can be used as a trigger for "scrolled past view", f.e. for sticky headers
+  classNameAboveView: PropTypes.string,
+  classNameNotAboveView: PropTypes.string,
   // can be used to switch classes on/off, for fixed navigation based on scroll point, etc
   toggleClassNameOnInView: PropTypes.bool,
 

@@ -11,8 +11,8 @@ const ScrolledPastFixedNav = ({ sections }) =>
       <Highlight className="javascript">
         {`return (
   <InViewMonitor
-    classNameInView='tabs'
-    classNameNotInView='tabs tabs--fixed'
+    classNameNotAboveView='tabs'
+    classNameAboveView='tabs tabs--fixed'
     intoViewMargin='0px'
   >
     <TabsHere />
@@ -22,8 +22,8 @@ const ScrolledPastFixedNav = ({ sections }) =>
     </div>
 
     <InViewMonitor
-      classNameInView="tabs"
-      classNameNotInView="tabs tabs--fixed"
+      classNameNotAboveView="tabs"
+      classNameAboveView="tabs tabs--fixed"
       toggleClassNameOnInView={true}
       intoViewMargin="0px"
     >

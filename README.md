@@ -58,6 +58,8 @@ Toggle prop saves GPU and battery by stopping the video when no longer in view!
 :---|:---|:---
 | `classNameInView` | string | common use: add classes to animate in element |
 | `classNameNotInView` | string | common use: visually hide element to be animated in. |
+| `classNameAboveView` | string | apply class when scrolled past view, f.e. sticky header. |
+| `classNameNotAboveView` | string | apply class when not scrolled past view. |
 | `toggleClassNameOnInView` | boolean | Toggle between `classNameInView/classNameNotInView`, instead of just replacing the first time element comes into view and then removing monitoring. `default: false` |
 | `childPropsInView` | object | props propagated to the child element. Can be used to start video, complex animations and more. |
 | `childPropsNotInView` | object | `default: {}` |
