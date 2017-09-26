@@ -10,13 +10,15 @@ import Lightbulb from './icon-elements/Lightbulb'
 
 const LineSvgs = () =>
   <div>
-    <h2 className="mb2">SVG line animations triggered by scroll into view</h2>
+    <h2 className="mb1">SVG line animations triggered by scroll into view</h2>
+    <p className="mb2">
+      each svg icon in the demo below uses the ScrollAnimateInLineSvg component,
+      which accepts an Component that renders an svg using paths (not fills).
+    </p>
 
     <div className="left-align mb4">
       <Highlight className="javascript">
-        {`// each svg icon below uses ScrollAnimateInLineSvg,
-// which accepts an Component that renders an svg using paths (not fills).
-
+        {`
 const ScrollAnimateInLineSvg = ({SvgElement}) => (
 <InViewMonitor
   classNameNotInView='vis-hidden'

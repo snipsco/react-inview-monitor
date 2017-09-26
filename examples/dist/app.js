@@ -35063,8 +35063,13 @@ var LineSvgs = function LineSvgs() {
     null,
     _react2.default.createElement(
       'h2',
-      { className: 'mb2' },
+      { className: 'mb1' },
       'SVG line animations triggered by scroll into view'
+    ),
+    _react2.default.createElement(
+      'p',
+      { className: 'mb2' },
+      'each svg icon in the demo below uses the ScrollAnimateInLineSvg component, which accepts an Component that renders an svg using paths (not fills).'
     ),
     _react2.default.createElement(
       'div',
@@ -35072,7 +35077,7 @@ var LineSvgs = function LineSvgs() {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        '// each svg icon below uses ScrollAnimateInLineSvg,\n// which accepts an Component that renders an svg using paths (not fills).\n\nconst ScrollAnimateInLineSvg = ({SvgElement}) => (\n<InViewMonitor\n  classNameNotInView=\'vis-hidden\'\n  classNameInView=\'\'\n  childPropsInView={{animate: true}}\n>\n  <MtSvgLines\n    duration={1500}\n    fade\n  >\n    {SvgElement}\n  </MtSvgLines>\n</InViewMonitor>\n)'
+        '\nconst ScrollAnimateInLineSvg = ({SvgElement}) => (\n<InViewMonitor\n  classNameNotInView=\'vis-hidden\'\n  classNameInView=\'\'\n  childPropsInView={{animate: true}}\n>\n  <MtSvgLines\n    duration={1500}\n    fade\n  >\n    {SvgElement}\n  </MtSvgLines>\n</InViewMonitor>\n)'
       ),
       'The magic \uD83C\uDFA9 for automatically adding line animations to SVGs handled by',
       ' ',
@@ -36693,8 +36698,25 @@ var AutoplayExample = function AutoplayExample() {
     null,
     _react2.default.createElement(
       'h2',
-      { className: 'mb2' },
+      { className: 'mb1' },
       'Autoplay video when in view'
+    ),
+    _react2.default.createElement(
+      'p',
+      { className: 'mb2' },
+      'Given a Video component that can be started by changing a ',
+      _react2.default.createElement(
+        'code',
+        null,
+        'isPlaying'
+      ),
+      ' prop, an autoplaying video via scroll is trivial. the ',
+      _react2.default.createElement(
+        'code',
+        null,
+        'toggleChildPropsOnInView'
+      ),
+      ' prop allows us to stop it again as soon as it goes out of view, saving CPU and increasing battery life for mobile devices! \uD83D\uDCAA'
     ),
     _react2.default.createElement(
       'div',
@@ -36702,7 +36724,7 @@ var AutoplayExample = function AutoplayExample() {
       _react2.default.createElement(
         _reactHighlight2.default,
         { className: 'javascript' },
-        '// given a Video component that can be started by changing isPlaying prop,\n// an autoplaying video via scroll is trivial.\n// the toggleChildPropsOnInView prop allows us to stop it again as soon as\n// it goes out of view, saving CPU and increasing battery life for mobile devices! \uD83D\uDCAA\n\nreturn (\n  <InViewMonitor\n    childPropsInView={{isPlaying: true}}\n    toggleChildPropsOnInView={true}\n    intoViewMargin=\'-100px\' // large value just to demonstrate that it starts/stops\n  >\n    <Video src={videoSrc} />\n  </InViewMonitor>\n)'
+        '\nreturn (\n  <InViewMonitor\n    childPropsInView={{isPlaying: true}}\n    toggleChildPropsOnInView={true}\n    intoViewMargin=\'-100px\' // large value just to demonstrate that it starts/stops\n  >\n    <Video src={videoSrc} />\n  </InViewMonitor>\n)'
       )
     ),
     _react2.default.createElement(

@@ -8,15 +8,18 @@ import videoSource from '../base64video'
 
 const AutoplayExample = () =>
   <div>
-    <h2 className="mb2">Autoplay video when in view</h2>
+    <h2 className="mb1">Autoplay video when in view</h2>
+    <p className="mb2">
+      Given a Video component that can be started by changing a{' '}
+      <code>isPlaying</code> prop, an autoplaying video via scroll is trivial.
+      the <code>toggleChildPropsOnInView</code> prop allows us to stop it again
+      as soon as it goes out of view, saving CPU and increasing battery life for
+      mobile devices! 💪
+    </p>
 
     <div className="left-align mb4">
       <Highlight className="javascript">
-        {`// given a Video component that can be started by changing isPlaying prop,
-// an autoplaying video via scroll is trivial.
-// the toggleChildPropsOnInView prop allows us to stop it again as soon as
-// it goes out of view, saving CPU and increasing battery life for mobile devices! 💪
-
+        {`
 return (
   <InViewMonitor
     childPropsInView={{isPlaying: true}}
