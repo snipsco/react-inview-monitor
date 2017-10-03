@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import throttle from 'lodash.throttle'
 
 class InviewMonitor extends Component {
   constructor(props) {
