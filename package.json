@@ -32,7 +32,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash.throttle": "^4.1.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1"
   },
