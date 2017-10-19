@@ -64,8 +64,8 @@ Toggle prop saves GPU and battery by stopping the video when no longer in view!
 | `childPropsInView` | object | props propagated to the child element. Can be used to start video, complex animations and more. |
 | `childPropsNotInView` | object | `default: {}` |
 | `toggleChildPropsOnInView` | boolean | Toggle between `childPropsInView/childPropsNotInView` instead of just add `childPropsInView` the first time element comes into view and then removing monitoring.. `default: false` |
-| `onInView` | object | callback when in view, can be used for tracking. Receives [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) as argument. |
-| `onNotInView` | object | callback when not in view. Receives [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) as argument. |
+| `onInView` | function | callback when in view, can be used for tracking. Receives [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) as argument. |
+| `onNotInView` | function | callback when not in view. Receives [IntersectionObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) as argument. |
 | `repeatOnInView` | boolean | Repeats callbacks for onInView/onNotInView, rather than firing just the first time. `default: false` |
 | `intoViewMargin` | string - css margin | Margin added to viewport for area to consider “in view”, can be negative. Use f.e. with positive value for lazy loading content just before in view, or with negative to start fading in element just after in view. Must be `px` or `%`. Default: ‘-20%’.  |
 | `useInviewMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
