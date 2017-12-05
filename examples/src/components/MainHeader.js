@@ -12,7 +12,7 @@ const MainHeader = () =>
     </div>
 
     <div className="main-header__install-cta max-width-2 mx-auto border p1">
-      $ yarn install react-inview-monitor
+      $ yarn add react-inview-monitor
     </div>
   </header>
 
