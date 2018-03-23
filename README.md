@@ -1,6 +1,7 @@
 # react-inview-monitor
 
 [![NPM version](https://badge.fury.io/js/react-inview-monitor.svg)](https://www.npmjs.com/package/react-inview-monitor)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/snipsco/react-inview-monitor/master/LICENSE)
 
 ## Easy to use, declarative scroll into view component for animations and more
 [See the demos for some example usage](https://snipsco.github.io/react-inview-monitor/).
@@ -27,7 +28,7 @@ IntersectionObserver uses `requestIdleCallback` internally, sacrificing low-late
 
 
 ### Reveal animation when scrolled into view
-```js
+```jsx
 <InViewMonitor
   classNameNotInView='vis-hidden'
   classNameInView='animated fadeInUp'
@@ -40,7 +41,7 @@ Note: these classes are not included. We are big fans of [animate.css](https://g
 ### Send custom prop to children when scrolled into view
 Can be used for example to auto play a video.
 Toggle prop saves GPU and battery by stopping the video when no longer in view!
-```js
+```jsx
 <InViewMonitor
   childPropsInView={{isPlaying: true}}
   toggleChildPropsOnInView={true}
@@ -69,3 +70,10 @@ Toggle prop saves GPU and battery by stopping the video when no longer in view!
 | `repeatOnInView` | boolean | Repeats callbacks for onInView/onNotInView, rather than firing just the first time. `default: false` |
 | `intoViewMargin` | string - css margin | Margin added to viewport for area to consider “in view”, can be negative. Use f.e. with positive value for lazy loading content just before in view, or with negative to start fading in element just after in view. Must be `px` or `%`. Default: ‘-20%’.  |
 | `useInviewMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
+
+## Contributing
+
+Please see the [Contribution Guidelines](https://github.com/snipsco/react-scrolling-color-background/blob/master/CONTRIBUTING.md).
+
+## Copyright
+This component is provided by [Snips](https://snips.ai) as Open Source Software. See [LICENSE](https://github.com/snipsco/react-scrolling-color-background/blob/master/LICENSE) for more information.
