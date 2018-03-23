@@ -1,7 +1,7 @@
 # react-inview-monitor
 
 [![NPM version](https://badge.fury.io/js/react-inview-monitor.svg)](https://www.npmjs.com/package/react-inview-monitor)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/snipsco/react-inview-monitor/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/snipsco/react-inview-monitor/master/LICENSE.txt)
 
 ## Easy to use, declarative scroll into view component for animations and more
 [See the demos for some example usage](https://snipsco.github.io/react-inview-monitor/).
@@ -76,4 +76,4 @@ Toggle prop saves GPU and battery by stopping the video when no longer in view!
 Please see the [Contribution Guidelines](https://github.com/snipsco/react-scrolling-color-background/blob/master/CONTRIBUTING.md).
 
 ## Copyright
-This component is provided by [Snips](https://snips.ai) as Open Source Software. See [LICENSE](https://github.com/snipsco/react-scrolling-color-background/blob/master/LICENSE) for more information.
+This component is provided by [Snips](https://snips.ai) as Open Source Software. See [LICENSE.txt](https://github.com/snipsco/react-scrolling-color-background/blob/master/LICENSE.txt) for more information.
