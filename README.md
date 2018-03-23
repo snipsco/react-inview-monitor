@@ -1,7 +1,7 @@
 # react-inview-monitor
 
 [![NPM version](https://badge.fury.io/js/react-inview-monitor.svg)](https://www.npmjs.com/package/react-inview-monitor)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/snipsco/react-inview-monitor/master/LICENSE.txt)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/snipsco/react-inview-monitor/blog/master/LICENSE.txt)
 
 ## Easy to use, declarative scroll into view component for animations and more
 [See the demos for some example usage](https://snipsco.github.io/react-inview-monitor/).
