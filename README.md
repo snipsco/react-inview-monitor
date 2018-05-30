@@ -22,6 +22,7 @@ This library uses [IntersectionObserver](https://developer.mozilla.org/en-US/doc
 #### Support
  Until IntersectionObserver is supported in all modern browsers, we recommend that you use it together with a polyfill, like this one (which only polyfills if necessary):
 https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
+
 [See browser support tables](https://caniuse.com/#search=intersection)
 
 #### What not to use this library for
