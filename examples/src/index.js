@@ -25,13 +25,14 @@ ReactDOM.render(
 
       <section id="again" className="max-width-3 mx-auto mb8">
         <button
+          className="try-again-button"
           type="button"
           onClick={() => {
             window.scrollTo(0, 0)
             window.location.reload()
           }}
         >
-          <h2>Try again?</h2>
+          Try again?
         </button>
       </section>
     </main>
