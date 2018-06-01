@@ -9,7 +9,7 @@
 There are other ~ scoll monitor libraries for React available, but none of them solved our use cases: to be able to declaratively configure animations and other effects to be
 triggered when individual elements came into the view. Inspired by the [wow reveal animation library](http://mynameismatthieu.com/WOW/) we set out to get to the same ease of use but within react's code paradigm.
 
-Note: this library is not neither an overly generic, comprehensive, nor low-level solution to managing scrolling. If you're desiring to solve one of the use cases we've had in mind it should be an ease for you to get running. If you need something that just doesn't quite fit this solution, or if you just you need more control, consider one of the following libraries:
+Note: this library is not an overly generic, comprehensive, or low-level solution to managing scrolling. If you desire to solve one of the use cases we've had in mind it should be an ease for you to get running. If you need something that doesn't quite fit this solution, or if you just you need more control, consider one of the following libraries:
 - [react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)
 - [react-scrollspy](https://github.com/makotot/react-scrollspy)
 - [scrollmonitor-react](https://github.com/stutrek/scrollmonitor-react)
@@ -20,10 +20,10 @@ Note: this library is not neither an overly generic, comprehensive, nor low-leve
 This library uses [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) under the hood.
 
 #### Support
- Until IntersectionObserver is supported in all modern browsers, we recommend that you use it together with a polyfill, like this one (which only polyfills if necessary):
+ Until IntersectionObserver is supported in all modern browsers ([see support tables](https://caniuse.com/#search=intersectionObserver)) we recommend that you use it together with a polyfill, like the one from the following cdn _which only polyfills (downloads code) if necessary_:
 https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
 
-[See browser support tables for IntersectionObserver](https://caniuse.com/#search=intersectionObserver)
+⚠️ This polyfill currently requires that you set `html, body {height: 100%}` in your css for it to function correctly.
 
 #### What not to use this library for
 IntersectionObserver uses `requestIdleCallback` internally, sacrificing low-latency (more direct) pixel accurate updates for performance. This means that there's not guarantee that the in/out of view updates will happen exactly when the element goes in/out of view - they can be delayed until the browser is less busy. For regular usage this is not a problem, but if you need a very high level of accuracy, this library (and IntersectionObserver) is not for you.

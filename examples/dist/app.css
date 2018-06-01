@@ -1,3 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
@@ -48,42 +61,11 @@ body {
   color: gray;
 }
 
-
-.tabs {
-  text-align: left;
-  height: 36px; /* preserve space when body becomes fixed */
-}
-.tabs__body {
-  border-bottom: 1px solid grey;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
-}
-.tabs--fixed .tabs__body {
-  position: fixed;
-  z-index: 10;
-  margin-bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-bottom-color: transparent;
-  background-color: blue;
-  animation: fade-in 0.15s cubic-bezier(0.25, 0.15, 0.3, 1.1) backwards;
-}
-.tabs__tab {
-  text-decoration: none;
-  font-size: 1.125rem;
-  display: inline-block;
-  padding: 0.5rem 0.75rem;
-  margin: 0 0.125rem -2px 0.125rem;
-  color: #202020;
-}
-.tabs--fixed .tabs__tab {
-  color: white;
-}
-.tabs__tab:target {
+.try-again-button {
   font-weight: bold;
-  border-bottom: 5px solid blue;
+  font-size: 1.25rem;
 }
+
 @keyframes fade-in {
   0% {
     opacity: 0;

@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import ScrolledPastFixedNav from './components/ScrolledPastFixedNav'
 import FadeInEffects from './components/FadeInEffects'
 import LineSvgs from './components/LineSvgs'
 import AutoplayExample from './components/AutoplayExample'
@@ -12,16 +11,6 @@ ReactDOM.render(
     <MainHeader />
 
     <main className="main py2">
-      <section id="fixed-nav" className="max-width-3 mx-auto mb8">
-        <ScrolledPastFixedNav
-          sections={[
-            { id: 'fade-in', label: 'fade in animations' },
-            { id: 'line-svg', label: 'Start svg line path animation' },
-            { id: 'autoplay', label: 'Autoplay video' }
-          ]}
-        />
-      </section>
-
       <section id="fade-in" className="max-width-3 mx-auto mb8">
         <FadeInEffects />
       </section>
@@ -36,13 +25,14 @@ ReactDOM.render(
 
       <section id="again" className="max-width-3 mx-auto mb8">
         <button
+          className="try-again-button"
           type="button"
           onClick={() => {
             window.scrollTo(0, 0)
             window.location.reload()
           }}
         >
-          <h2>Try again?</h2>
+          Try again?
         </button>
       </section>
     </main>

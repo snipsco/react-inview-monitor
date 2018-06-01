@@ -4,9 +4,7 @@ import Highlight from 'react-highlight'
 import InViewMonitor from '../../../src/'
 import Video from './Video'
 
-import videoSource from '../base64video'
-
-const AutoplayExample = () =>
+const AutoplayExample = () => (
   <div>
     <h2 className="mb1">Autoplay video when in view</h2>
     <p className="mb2">
@@ -38,9 +36,10 @@ return (
         toggleChildPropsOnInView={true}
         intoViewMargin="-100px"
       >
-        <Video src={videoSource} />
+        <Video src="./birds.mp4" />
       </InViewMonitor>
     </div>
   </div>
+)
 
 export default AutoplayExample

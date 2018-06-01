@@ -8,7 +8,7 @@
     "prepublish": "npm run transpile",
     "transpile": "babel -d lib src/",
     "build": "npm run build-docs",
-    "build-docs": "webpack --mode=production examples/src examples/dist/app.js --module-bind js=babel-loader",
+    "build-docs": "webpack --mode=production examples/src -o examples/dist/app.js --module-bind js=babel-loader",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -33,7 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "prop-types": "^15.6.1",
-    "react": "^16.2.0"
+    "react": "^16.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -42,13 +42,13 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
-    "prettier": "^1.11.1",
-    "react-dom": "^16.2.0",
-    "react-highlight": "^0.11.1",
-    "react-mt-svg-lines": "^0.8.3",
-    "webpack": "^4.2.0",
-    "webpack-cli": "^2.0.12"
+    "lint-staged": "^7.1.3",
+    "prettier": "^1.13.3",
+    "react-dom": "^16.4.0",
+    "react-highlight": "^0.12.0",
+    "react-mt-svg-lines": "^0.8.4",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4"
   },
   "files": [
     "lib/**/*.js"
