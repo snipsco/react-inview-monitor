@@ -19,8 +19,10 @@ Note: this library is not an overly generic, comprehensive, or low-level solutio
 This library uses [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) under the hood.
 
 #### Support
- Until IntersectionObserver is supported in all modern browsers, we recommend that you use it together with a polyfill, like this one (which only polyfills if necessary):
+ Until IntersectionObserver is supported in all modern browsers we recommend that you use it together with a polyfill, like the one from the following cdn _which only polyfills (downloads code) if necessary_:
 https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
+
+⚠️ This polyfill currently requires that you set `html, body {height: 100%}` in your css for it to function correctly.
 
 #### What not to use this library for
 IntersectionObserver uses `requestIdleCallback` internally, sacrificing low-latency (more direct) pixel accurate updates for performance. This means that there's not guarantee that the in/out of view updates will happen exactly when the element goes in/out of view - they can be delayed until the browser is less busy. For regular usage this is not a problem, but if you need a very high level of accuracy, this library (and IntersectionObserver) is not for you.
