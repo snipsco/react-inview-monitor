@@ -8,7 +8,7 @@
     "prepublish": "npm run transpile",
     "transpile": "babel -d lib src/",
     "build": "npm run build-docs",
-    "build-docs": "webpack --mode=production examples/src examples/dist/app.js --module-bind js=babel-loader",
+    "build-docs": "webpack --mode=production examples/src -o examples/dist/app.js --module-bind js=babel-loader",
     "precommit": "lint-staged"
   },
   "lint-staged": {
