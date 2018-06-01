@@ -1,6 +1,7 @@
 # react-inview-monitor
 
 [![NPM version](https://badge.fury.io/js/react-inview-monitor.svg)](https://www.npmjs.com/package/react-inview-monitor)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/snipsco/react-inview-monitor/blob/master/LICENSE.txt)
 
 ## Easy to use, declarative scroll into view component for animations and more
 [See the demos for some example usage](https://snipsco.github.io/react-inview-monitor/).
@@ -19,7 +20,7 @@ Note: this library is not an overly generic, comprehensive, or low-level solutio
 This library uses [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) under the hood.
 
 #### Support
- Until IntersectionObserver is supported in all modern browsers we recommend that you use it together with a polyfill, like the one from the following cdn _which only polyfills (downloads code) if necessary_:
+ Until IntersectionObserver is supported in all modern browsers ([see support tables](https://caniuse.com/#search=intersectionObserver)) we recommend that you use it together with a polyfill, like the one from the following cdn _which only polyfills (downloads code) if necessary_:
 https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
 
 ⚠️ This polyfill currently requires that you set `html, body {height: 100%}` in your css for it to function correctly.
@@ -29,7 +30,7 @@ IntersectionObserver uses `requestIdleCallback` internally, sacrificing low-late
 
 
 ### Reveal animation when scrolled into view
-```js
+```jsx
 <InViewMonitor
   classNameNotInView='vis-hidden'
   classNameInView='animated fadeInUp'
@@ -42,7 +43,7 @@ Note: these classes are not included. We are big fans of [animate.css](https://g
 ### Send custom prop to children when scrolled into view
 Can be used for example to auto play a video.
 Toggle prop saves GPU and battery by stopping the video when no longer in view!
-```js
+```jsx
 <InViewMonitor
   childPropsInView={{isPlaying: true}}
   toggleChildPropsOnInView={true}
@@ -71,3 +72,10 @@ Toggle prop saves GPU and battery by stopping the video when no longer in view!
 | `repeatOnInView` | boolean | Repeats callbacks for onInView/onNotInView, rather than firing just the first time. `default: false` |
 | `intoViewMargin` | string - css margin | Margin added to viewport for area to consider “in view”, can be negative. Use f.e. with positive value for lazy loading content just before in view, or with negative to start fading in element just after in view. Must be `px` or `%`. Default: ‘-20%’.  |
 | `useInviewMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
+
+## Contributing
+
+Please see the [Contribution Guidelines](https://github.com/snipsco/react-scrolling-color-background/blob/master/CONTRIBUTING.md).
+
+## Copyright
+This component is provided by [Snips](https://snips.ai) as Open Source Software. See [LICENSE.txt](https://github.com/snipsco/react-inview-monitor/blob/master/LICENSE.txt) for more information.
