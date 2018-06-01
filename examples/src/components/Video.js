@@ -29,7 +29,6 @@ class Video extends Component {
         loop
       >
         <source src={src} type="video/mp4" />
-        ))}
       </video>
     )
   }
