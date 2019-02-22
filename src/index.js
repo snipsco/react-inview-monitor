@@ -63,10 +63,12 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
     } = this.props
 
     const nowInView = entry.isIntersecting
+    const toggleClassBehavior =
+      (classNameInView || classNameAboveView) && toggleClassNameOnInView
+    const tooglePropsBehavior = childPropsInView && toggleChildPropsOnInView
+    const toggleOnInViewBehavior = (onInView || onNotInView) && repeatOnInView
     const toggleBehavior =
-      ((classNameInView || classNameAboveView) && toggleClassNameOnInView) ||
-      (childPropsInView && toggleChildPropsOnInView) ||
-      ((onInView || onNotInView) && repeatOnInView)
+      toggleClassBehavior || tooglePropsBehavior || toggleOnInViewBehavior
 
     if (nowInView && !toggleBehavior) {
       this.setState({
@@ -107,19 +109,23 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
       // check regular in/out of view
       if (nowInView) {
         // just entered view
-        this.setState({
-          className: classNameInView,
-          childProps: childPropsInView
-        })
+        const changes = {}
+        if (toggleClassBehavior) changes.className = classNameInView
+        if (tooglePropsBehavior) changes.childProps = childPropsInView
+        if (Object.keys(changes).length) {
+          this.setState(changes)
+        }
         if (onInView && typeof onInView === 'function') {
           onInView(entry)
         }
       } else {
         // just left view
-        this.setState({
-          className: classNameNotInView,
-          childProps: childPropsNotInView
-        })
+        const changes = {}
+        if (toggleClassBehavior) changes.className = classNameNotInView
+        if (tooglePropsBehavior) changes.childProps = childPropsNotInView
+        if (Object.keys(changes).length) {
+          this.setState(changes)
+        }
         if (onNotInView && typeof onNotInView === 'function') {
           onNotInView(entry)
         }
