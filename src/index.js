@@ -71,10 +71,12 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
       toggleClassBehavior || tooglePropsBehavior || toggleOnInViewBehavior
 
     if (nowInView && !toggleBehavior) {
-      this.setState({
-        className: classNameInView,
-        childProps: childPropsInView
-      })
+      const changes = {}
+      if (classNameInView) changes.className = classNameInView
+      if (childPropsInView) changes.childProps = childPropsInView
+      if (Object.keys(changes).length) {
+        this.setState(changes)
+      }
       if (onInView && typeof onInView === 'function') {
         onInView(entry)
       }
