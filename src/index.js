@@ -72,7 +72,9 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
     }
 
     const toggleClassBehavior =
-      (classNameInView || classNameAboveView) && toggleClassNameOnInView
+      (typeof classNameInView === 'string' ||
+        typeof classNameAboveView === 'string') &&
+      toggleClassNameOnInView
     const tooglePropsBehavior = childPropsInView && toggleChildPropsOnInView
     const toggleOnInViewBehavior = (onInView || onNotInView) && repeatOnInView
     const toggleBehavior =
@@ -80,7 +82,8 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
 
     if (nowInView && !toggleBehavior) {
       const changes = {}
-      if (classNameInView) changes.className = classNameInView
+      if (typeof classNameInView === 'string')
+        changes.className = classNameInView
       if (childPropsInView) changes.childProps = childPropsInView
       if (Object.keys(changes).length) {
         this.setState(changes)
@@ -98,7 +101,7 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
 
     if (toggleBehavior) {
       // Check if we scrolled past view
-      if (classNameAboveView) {
+      if (typeof classNameAboveView === 'string') {
         if (
           // we just left the view
           !nowInView &&
