@@ -10,6 +10,8 @@ class InviewMonitor extends Component {
     }
     this.onIntersectionAll = this.onIntersectionAll.bind(this)
     this.onIntersection = this.onIntersection.bind(this)
+
+    this.isFirstInView = true
   }
   componentDidMount() {
     if (!window.IntersectionObserver) {
@@ -63,6 +65,12 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
     } = this.props
 
     const nowInView = entry.isIntersecting
+    const isFirstInView = nowInView && this.isFirstInView
+    if (isFirstInView) {
+      // single out just the first inView
+      this.isFirstInView = false
+    }
+
     const toggleClassBehavior =
       (classNameInView || classNameAboveView) && toggleClassNameOnInView
     const tooglePropsBehavior = childPropsInView && toggleChildPropsOnInView
@@ -112,8 +120,10 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
       if (nowInView) {
         // just entered view
         const changes = {}
-        if (toggleClassBehavior) changes.className = classNameInView
-        if (tooglePropsBehavior) changes.childProps = childPropsInView
+        if (toggleClassBehavior || isFirstInView)
+          changes.className = classNameInView
+        if (tooglePropsBehavior || isFirstInView)
+          changes.childProps = childPropsInView
         if (Object.keys(changes).length) {
           this.setState(changes)
         }
