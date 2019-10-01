@@ -72,7 +72,7 @@ Toggle prop saves GPU and battery by stopping the video when no longer in view!
 | `repeatOnInView` | boolean | Repeats callbacks for onInView/onNotInView, rather than firing just the first time. `default: false` |
 | `intoViewMargin` | string - css margin | Margin added to viewport for area to consider “in view”, can be negative. Use f.e. with positive value for lazy loading content just before in view, or with negative to start fading in element just after in view. Must be `px` or `%`. Default: ‘-20%’.  |
 | `useInviewMonitor` | func | Convenient function that can be used to dynamically disable the monitor, for example for mobile devices. |
-| `threshold` | number | Number which indicate at what percentage of the target's visibility the observer's callback should be executed. |
+| `threshold` | number | Value between 0 and 1 which indicate at what percentage of the target's visibility the observer's callback should be executed. `default: 0` |
 
 ## Contributing
 
