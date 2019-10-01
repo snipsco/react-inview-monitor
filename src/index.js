@@ -19,7 +19,7 @@ class InviewMonitor extends Component {
 Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver ?`)
       return
     }
-    const { useInviewMonitor, intoViewMargin } = this.props
+    const { useInviewMonitor, intoViewMargin, threshold } = this.props
     if (
       !this._element ||
       !useInviewMonitor ||
@@ -28,7 +28,8 @@ Perhaps use a polyfill like: https://cdn.polyfill.io/v2/polyfill.js?features=Int
       return
     }
     const options = {
-      rootMargin: intoViewMargin
+      rootMargin: intoViewMargin,
+      threshold
     }
     // any performance benefits from trying to re-use the observer?
     // possible enhancement to add later on.
@@ -195,13 +196,15 @@ InviewMonitor.propTypes = {
   // because easier to toggle this prop, then toggle not using the component at all.
   useInviewMonitor: PropTypes.func,
 
-  intoViewMargin: PropTypes.string
+  intoViewMargin: PropTypes.string,
+  threshold: PropTypes.number
 }
 InviewMonitor.defaultProps = {
   classNameNotInView: '',
   childPropsNotInView: {},
   useInviewMonitor: () => true,
-  intoViewMargin: '-20%'
+  intoViewMargin: '-20%',
+  threshold: 0
 }
 
 export default InviewMonitor
